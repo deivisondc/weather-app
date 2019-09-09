@@ -15,13 +15,13 @@ export default {
   },
   methods: {
     teste() {
-      this.$emit('click', 'WeatherDetail')
+      this.$emit('click', 'WeatherList')
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
   .el-button {
     width: 80px;
     height: 80px;

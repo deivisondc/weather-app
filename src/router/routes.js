@@ -1,5 +1,6 @@
 import TheDashboard from "@/components/view/dashboard/TheDashboard";
 import Weather from "@/components/view/weather/Weather";
+import WeatherList from "@/components/view/weather/WeatherList";
 import WeatherDetail from "@/components/view/weather/WeatherDetail";
 
 const routes = [
@@ -14,7 +15,12 @@ const routes = [
     component: Weather,
     children: [
       {
-        path: ":cityId",
+        path: "cities",
+        name: "WeatherList",
+        component: WeatherList
+      },
+      {
+        path: "cities/:cityId",
         name: "WeatherDetail",
         component: WeatherDetail
       }

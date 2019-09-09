@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     handleClick(data) {
-      this.$router.push({ name: data, params: { cityId: "123"} })
+      this.$router.push({ name: data })
     }
   }
 };
