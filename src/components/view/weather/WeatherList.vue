@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
   .list-container {
-    background-color: #ff0;
+    background-color: #FFFFFF;
     border-radius: 8px;
     display: flex;
     flex: 1 1 auto;
