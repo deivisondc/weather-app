@@ -18,18 +18,25 @@
       <div class="details-container">
         <div class="day-info">
           <p>Today</p>
-          <p>Weekday</p>
+          <p> {{ new Date() | moment('dddd') }} </p>
         </div>
 
         <div class="min-max-temp">
           <p>{{ weather.main.temp_min }}</p>
+          <p>|</p>
           <p>{{ weather.main.temp_max }}</p>
         </div>
 
         <!-- <p> {{ 1568138400 | moment('dddd') }} </p> -->
       </div>
       <hr>
-      <div>
+      <div class="umidity-info">
+        <div>
+          <p>Chuva: {{weather.rain ? weather.rain['1h'] : 0}}mm</p>
+        </div>
+        <div>
+          <p>Umidade: {{weather.main.umidity}}%</p>
+        </div>
       </div>
       <hr>
       <div v-for="day in forecast.list" :key="day.dt" class="forecast-list">
@@ -39,6 +46,20 @@
           <p> {{ day.main.temp_max }} </p>
           <p> {{ day.main.temp_min }} </p>
         </span>
+      </div>
+
+      <hr>
+      <div class="additional-info-container">
+        <div>
+          <p>Wind</p>
+          <p>Visibility</p>
+          <p>UV index</p>
+        </div>
+        <div class="additional-info-values">
+          <p>West {{weather.wind.speed}}m/s</p>
+          <p>{{weather.visibility / 1000}} km</p>
+          <p>{{uvi.value}}</p>
+        </div>
       </div>
 
     </div>
@@ -54,7 +75,9 @@ import axios from '@/services/axios';
 export default {
   data() {
     return {
-      weather: null
+      weather: null,
+      forecast: null,
+      uvi: null,
     }
   },
   computed: {
@@ -77,13 +100,23 @@ export default {
       main: {
         temp: 28.09,
         temp_min: 20,
-        temp_max: 30
+        temp_max: 30,
+        umidity: 32
       },
+      visibility: 10000,
       weather: [
         {
           icon: '10d'
         }
-      ]
+      ],
+      wind: {
+        speed: 2.1,
+        deg: 310
+      },
+      rain: {
+        '1h': 5,
+        '3h': 20
+      }
     }
     this.forecast = {
       list: [
@@ -130,6 +163,9 @@ export default {
           ]
         }
       ]
+    },
+    this.uvi = {
+      value: 10.48
     }
   }
 }
@@ -194,7 +230,13 @@ export default {
   }
 
   .min-max-temp > p {
-    margin: 0 10px;
+    margin: 0 3px;
+  }
+
+  .umidity-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .forecast-list {
@@ -222,6 +264,17 @@ export default {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;
+    overflow-y: auto
+  }
+
+  .additional-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .additional-info-values > p {
+    margin-left: 10px;
   }
 
   .weather-footer-container {
