@@ -220,7 +220,7 @@ export default {
   }
 
   .day-info > p {
-    margin: 0 10px;
+    margin: 0 5px;
   }
 
   .min-max-temp {
