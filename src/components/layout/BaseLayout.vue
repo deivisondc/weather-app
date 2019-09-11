@@ -18,5 +18,6 @@ export default {
     border-radius: 8px;
     // padding: 20px 20px;
     background-color: #fff;
+    box-shadow: 0 0 1em #000;
   }
 </style>
