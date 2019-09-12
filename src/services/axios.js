@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://api.openweathermap.org/data/2.5/'
+  baseURL: process.env.VUE_APP_OPENWEATHER_BASE_URL,
 });
 
 instance.defaults.headers['Content-Type'] = 'application/json';
