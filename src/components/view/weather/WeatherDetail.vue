@@ -10,29 +10,15 @@
     </CurrentWeather>
 
     <div class="weather-details-container">
-      <div class="details-container">
-        <div class="day-info">
-          <p>Today</p>
-          <p> {{ new Date() | moment('dddd') }} </p>
-        </div>
-
-        <div class="min-max-temp">
-          <p>{{ weather.main.temp_max }}</p>
-          <p>|</p>
-          <p>{{ weather.main.temp_min }}</p>
-        </div>
-
-        <!-- <p> {{ 1568138400 | moment('dddd') }} </p> -->
-      </div>
+      <ForecastCurrentDayWeather
+        :maxTemperature="weather.main.temp_max"
+        :minTemperature="weather.main.temp_min">
+      </ForecastCurrentDayWeather>
       <hr>
-      <div class="humidity-info">
-        <div>
-          <p>Chuva: {{weather.rain ? weather.rain['1h'] : 0}}mm</p>
-        </div>
-        <div>
-          <p>Umidade: {{weather.main.humidity}}%</p>
-        </div>
-      </div>
+      <ForecastRainHumidityInfo
+        :rain="weather.rain ? weather.rain['1h'] : 0"
+        :humidity="weather.main.humidity">
+      </ForecastRainHumidityInfo>
       <hr>
       <div v-for="day in forecast.list" :key="day.dt" class="forecast-list">
         <p> {{ day.dt | moment('dddd') }} </p>
@@ -44,18 +30,11 @@
       </div>
 
       <hr>
-      <div class="additional-info-container">
-        <div>
-          <p>Wind</p>
-          <p v-if="weather.visibility">Visibility</p>
-          <p>UV index</p>
-        </div>
-        <div class="additional-info-values">
-          <p>{{windDegressFormated}} {{weather.wind.speed}}m/s</p>
-          <p v-if="weather.visibility">{{weather.visibility / 1000}} km</p>
-          <p>{{weather.uvi.value}}</p>
-        </div>
-      </div>
+      <ForecastCurrentDayExtraInfo
+        :wind="weather.wind.speed"
+        :visibility="weather.visibility"
+        :uvi="weather.uvi.value">
+      </ForecastCurrentDayExtraInfo>
 
     </div>
 
@@ -69,11 +48,17 @@ import storeHelper from '@/helpers/storeHelper';
 
 import NavHeader from '@/components/layout/NavHeader';
 import CurrentWeather from '@/components/weatherDetails/CurrentWeather';
+import ForecastCurrentDayWeather from '@/components/weatherDetails/ForecastCurrentDayWeather';
+import ForecastRainHumidityInfo from '@/components/weatherDetails/ForecastRainHumidityInfo';
+import ForecastCurrentDayExtraInfo from '@/components/weatherDetails/ForecastCurrentDayExtraInfo';
 
 export default {
   components: {
     NavHeader,
     CurrentWeather,
+    ForecastCurrentDayWeather,
+    ForecastRainHumidityInfo,
+    ForecastCurrentDayExtraInfo,
   },
   computed: {
     ...storeHelper,
@@ -185,16 +170,6 @@ export default {
     flex-shrink: 1;
     flex-basis: auto;
     overflow-y: auto
-  }
-
-  .additional-info-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .additional-info-values > p {
-    margin-left: 10px;
   }
 
   .weather-footer-container {
