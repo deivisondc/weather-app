@@ -2,7 +2,7 @@
   <el-row type="flex" justify="space-between">
     <el-col :span="16" class="main-weather-info">
       <el-row>
-        <p class="current-temp">{{ this.currentTempRounded }}<sup class="degrees-symbol"> °C</sup></p>
+        <p class="current-temp">{{ this.round(this.currentTemp) }}<sup class="degrees-symbol"> °C</sup></p>
         <p class="city-name">{{ this.cityName }}</p>
       </el-row>
     </el-col>
@@ -14,16 +14,14 @@
 </template>
 
 <script>
+import tools from '@/mixins/tools';
+
 export default {
+  mixins: [tools],
   props: {
     currentTemp: null,
     cityName: null,
     weatherIconUrl: null,
-  },
-  computed: {
-    currentTempRounded() {
-      return this.currentTemp ? Math.round(this.currentTemp) : 0;
-    },
   },
 };
 </script>
