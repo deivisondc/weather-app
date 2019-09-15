@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import storeHelper from '@/helpers/storeHelper';
 
 export default {
   data() {
@@ -78,7 +78,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('weather', ['weather', 'forecast']),
+    ...storeHelper,
 
     windDegressFormated() {
       if (this.weather.wind.deg) {
