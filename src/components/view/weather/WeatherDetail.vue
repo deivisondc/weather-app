@@ -20,15 +20,9 @@
         :humidity="weather.main.humidity">
       </ForecastRainHumidityInfo>
       <hr>
-      <div v-for="day in forecast.list" :key="day.dt" class="forecast-list">
-        <p> {{ day.dt | moment('dddd') }} </p>
-        <img :src="`${weatherIconUrl + day.weather[0].icon}.png`" />
-        <span class="forecast-list-min-max">
-          <p> {{ day.main.temp_max }} </p>
-          <p> {{ day.main.temp_min }} </p>
-        </span>
-      </div>
-
+      <ForecastInfo
+        :forecastList="forecast.list">
+      </ForecastInfo>
       <hr>
       <ForecastCurrentDayExtraInfo
         :wind="weather.wind.speed"
@@ -50,6 +44,7 @@ import NavHeader from '@/components/layout/NavHeader';
 import CurrentWeather from '@/components/weatherDetails/CurrentWeather';
 import ForecastCurrentDayWeather from '@/components/weatherDetails/ForecastCurrentDayWeather';
 import ForecastRainHumidityInfo from '@/components/weatherDetails/ForecastRainHumidityInfo';
+import ForecastInfo from '@/components/weatherDetails/ForecastInfo';
 import ForecastCurrentDayExtraInfo from '@/components/weatherDetails/ForecastCurrentDayExtraInfo';
 
 export default {
@@ -58,6 +53,7 @@ export default {
     CurrentWeather,
     ForecastCurrentDayWeather,
     ForecastRainHumidityInfo,
+    ForecastInfo,
     ForecastCurrentDayExtraInfo,
   },
   computed: {
