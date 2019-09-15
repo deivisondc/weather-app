@@ -8,7 +8,7 @@
     </el-col>
 
     <el-col :span="8">
-      <img :src="weatherIconUrl" />
+      <img v-if="weatherIcon" :src="weatherIconUrl" />
     </el-col>
   </el-row>
 </template>
@@ -21,8 +21,16 @@ export default {
   props: {
     currentTemp: null,
     cityName: null,
-    weatherIconUrl: null,
+    weatherIcon: null,
   },
+  computed: {
+    weatherIconUrl() {
+      if (this.weatherIcon) {
+        return `${process.env.VUE_APP_OPENWEATHER_BASE_ICON_URL + this.weatherIcon}@2x.png`;
+      }
+      return null;
+    },
+  }
 };
 </script>
 
