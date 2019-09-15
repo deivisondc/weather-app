@@ -23,8 +23,8 @@ export default {
   computed: {
     currentTempRounded() {
       return this.currentTemp ? Math.round(this.currentTemp) : 0;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -8,6 +8,7 @@
       :cityName="weather.name"
       :weatherIconUrl="weatherIcon">
     </CurrentWeather>
+
     <div class="weather-details-container">
       <div class="details-container">
         <div class="day-info">
