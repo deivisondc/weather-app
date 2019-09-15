@@ -5,7 +5,12 @@
         <p class="light-gray">Wind</p>
       </el-col>
       <el-col :span="16">
-        <p class="dark-gray">{{ this.round(this.wind, 1) }} m/s</p>
+        <p class="dark-gray">
+          <span>
+            <img id="windArrow" src="@/assets/arrow.png"/>
+          </span>
+          {{ round(this.windSpeed, 1) }} m/s
+        </p>
       </el-col>
     </el-row>
 
@@ -14,7 +19,7 @@
         <p class="light-gray">Visiblity</p>
       </el-col>
       <el-col :span="16">
-        <p class="dark-gray">{{ this.round((this.visibility || 0, 1) / 1000) }} km</p>
+        <p class="dark-gray">{{ round((this.visibility || 0, 1) / 1000) }} km</p>
       </el-col>
     </el-row>
 
@@ -23,7 +28,7 @@
         <p class="light-gray">UV Index</p>
       </el-col>
       <el-col :span="16">
-        <p class="dark-gray">{{ this.round(this.uvi, 1) }}</p>
+        <p class="dark-gray">{{ round(this.uvi, 1) }}</p>
       </el-col>
     </el-row>
   </div>
@@ -35,9 +40,15 @@ import tools from '@/mixins/tools';
 export default {
   mixins: [tools],
   props: {
-    wind: null,
+    windSpeed: null,
+    windDegrees: null,
     visibility: null,
     uvi: null,
+  },
+  watch: {
+    windDegrees(val) {
+      document.getElementById('windArrow').setAttribute('style', `transform: rotate(${val}deg)`);
+    },
   },
 };
 </script>
@@ -48,6 +59,11 @@ export default {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 0.9em;
     margin: 5px 0px;
+  }
+
+  img {
+    max-width: 13px;
+    max-height: 13px;
   }
 
   .light-gray {
