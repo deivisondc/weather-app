@@ -9,29 +9,35 @@
       :weatherIcon="weather.weather[0].icon">
     </CurrentWeather>
 
-    <div class="weather-details-container">
-      <ForecastCurrentDayWeather
-        :maxTemperature="weather.main.temp_max"
-        :minTemperature="weather.main.temp_min">
-      </ForecastCurrentDayWeather>
-      <hr>
-      <ForecastRainHumidityInfo
-        :rain="weather.rain ? weather.rain['1h'] : 0"
-        :humidity="weather.main.humidity">
-      </ForecastRainHumidityInfo>
-      <hr>
+    <ForecastContainer>
+      <template v-slot:currentDayWeather>
+        <ForecastCurrentDayWeather
+          :maxTemperature="weather.main.temp_max"
+          :minTemperature="weather.main.temp_min">
+        </ForecastCurrentDayWeather>
+      </template>
+
+      <template v-slot:rainHumidityInfo>
+        <ForecastRainHumidityInfo
+          :rain="weather.rain ? weather.rain['1h'] : 0"
+          :humidity="weather.main.humidity">
+        </ForecastRainHumidityInfo>
+      </template>
+
       <ForecastInfo
         :forecastList="forecast.list">
       </ForecastInfo>
-      <hr>
-      <ForecastCurrentDayExtraInfo
-        :windSpeed="weather.wind.speed"
-        :windDegrees="weather.wind.deg"
-        :visibility="weather.visibility"
-        :uvi="weather.uvi.value">
-      </ForecastCurrentDayExtraInfo>
 
-    </div>
+      <template v-slot:currentDayExtraInfo>
+        <ForecastCurrentDayExtraInfo
+          :windSpeed="weather.wind.speed"
+          :windDegrees="weather.wind.deg"
+          :visibility="weather.visibility"
+          :uvi="weather.uvi.value">
+        </ForecastCurrentDayExtraInfo>
+      </template>
+
+    </ForecastContainer>
 
     <div class="weather-footer-container">
     </div>
@@ -43,6 +49,7 @@ import storeHelper from '@/helpers/storeHelper';
 
 import NavHeader from '@/components/layout/NavHeader';
 import CurrentWeather from '@/components/weatherDetails/CurrentWeather';
+import ForecastContainer from '@/components/weatherDetails/ForecastContainer';
 import ForecastCurrentDayWeather from '@/components/weatherDetails/ForecastCurrentDayWeather';
 import ForecastRainHumidityInfo from '@/components/weatherDetails/ForecastRainHumidityInfo';
 import ForecastInfo from '@/components/weatherDetails/ForecastInfo';
@@ -52,6 +59,7 @@ export default {
   components: {
     NavHeader,
     CurrentWeather,
+    ForecastContainer,
     ForecastCurrentDayWeather,
     ForecastRainHumidityInfo,
     ForecastInfo,
@@ -123,18 +131,6 @@ export default {
 
   .forecast-list-min-max > p {
     margin-left: 10px;
-  }
-
-  .weather-details-container {
-    background-color: #FFF;
-    margin: 0 20px;
-    border-radius: 10px;
-    padding: 10px;
-    // flex: 1 1 auto;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    overflow-y: auto
   }
 
   .weather-footer-container {
