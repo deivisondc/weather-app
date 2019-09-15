@@ -5,7 +5,7 @@
         <p class="dark-gray">{{ day.dt | moment('dddd') }}</p>
       </el-col>
       <el-col :span="5" :offset="1">
-        <img :src="`${weatherIconUrl + day.weather[0].icon}.png`" />
+        <img :src="`${weatherIconUrl + iconUrlDayOrNight(day.weather[0].icon)}.png`" />
       </el-col>
       <el-col :span="3" :offset="2">
         <p class="dark-gray align-right">{{ round(day.main.temp_max) }}</p>
@@ -28,6 +28,14 @@ export default {
   computed: {
     weatherIconUrl() {
       return process.env.VUE_APP_OPENWEATHER_BASE_ICON_URL;
+    },
+  },
+  methods: {
+    iconUrlDayOrNight(icon) {
+      if (this.$moment().hours() >= 18) {
+        return icon.replace('d', 'n');
+      }
+      return icon.replace('n', 'd');
     },
   },
 };

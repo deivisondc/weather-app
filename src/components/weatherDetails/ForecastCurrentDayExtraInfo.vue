@@ -9,7 +9,7 @@
           <span>
             <img id="windArrow" src="@/assets/arrow.png"/>
           </span>
-          {{ round(this.windSpeed, 1) }} m/s
+          {{ round(convertMpsToKmh(this.windSpeed), 1) }} km/h
         </p>
       </el-col>
     </el-row>
