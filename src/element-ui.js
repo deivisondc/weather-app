@@ -4,8 +4,10 @@ import {
   Button,
   Icon,
   Row,
+  Col,
 } from 'element-ui';
 
 Vue.use(Button);
 Vue.use(Icon);
 Vue.use(Row);
+Vue.use(Col);
