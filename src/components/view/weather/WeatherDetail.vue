@@ -1,19 +1,13 @@
 <template>
   <div class="weather-container">
-    <div class="weather-header-container">
-      Voltar
-      <br>
-      <div class="header-container">
-        <div class="header-info">
-          <h2>{{ weather.main.temp }} °C</h2>
-          <p>{{ weather.name }}</p>
-        </div>
-        <div class="header-icon">
-          <img v-if="weather.weather[0].icon" :src="weatherIcon" />
-        </div>
-      </div>
-    </div>
+    <NavHeader>
+    </NavHeader>
 
+    <CurrentWeather
+      :currentTemp="weather.main.temp"
+      :cityName="weather.name"
+      :weatherIconUrl="weatherIcon">
+    </CurrentWeather>
     <div class="weather-details-container">
       <div class="details-container">
         <div class="day-info">
@@ -72,10 +66,13 @@
 <script>
 import storeHelper from '@/helpers/storeHelper';
 
+import NavHeader from '@/components/layout/NavHeader';
+import CurrentWeather from '@/components/weatherDetails/CurrentWeather';
+
 export default {
-  data() {
-    return {
-    }
+  components: {
+    NavHeader,
+    CurrentWeather,
   },
   computed: {
     ...storeHelper,
@@ -127,31 +124,6 @@ export default {
     min-height: 500px;
     max-height: 500px;
     border-radius: 8px;
-  }
-
-  .weather-header-container {
-    // flex: 0 1 100px;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: 100px;
-    padding: 10px 10px;
-  }
-
-  .header-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .header-info {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .header-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .details-container {
