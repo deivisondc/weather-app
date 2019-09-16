@@ -19,7 +19,7 @@ export default {
 <style lang="scss" scoped>
 
   .weather-details-container {
-    background-color: #FFF;
+    background-color: #F9F9F9;
     margin: 0 20px;
     border-radius: 10px;
     padding: 10px;

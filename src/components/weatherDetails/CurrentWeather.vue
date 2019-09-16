@@ -24,11 +24,8 @@ export default {
     weatherIcon: null,
   },
   computed: {
-    weatherIconUrl() {
-      if (this.weatherIcon) {
-        return `${process.env.VUE_APP_OPENWEATHER_BASE_ICON_URL + this.weatherIcon}@2x.png`;
-      }
-      return null;
+    weatherIconUrl() { // ao meu ver nao tem necessidade de ser um computed aqui... perguntar pro helder
+      return this.getWeatherIcon(this.weatherIcon);
     },
   },
 };
@@ -39,6 +36,13 @@ export default {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #FFF;
     text-shadow: #444 0px 5px 6px;
+  }
+
+  img {
+    width: 9.5em;
+    position: absolute;
+    right: 0px;
+    top: -40px;
   }
 
   .main-weather-info {

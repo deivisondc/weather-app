@@ -5,7 +5,7 @@
         <p class="dark-gray">{{ day.dt | moment('dddd') }}</p>
       </el-col>
       <el-col :span="5" :offset="1">
-        <img :src="`${weatherIconUrl + iconUrlDayOrNight(day.weather[0].icon)}.png`" />
+        <img :src="`${getWeatherIcon(iconUrlDayOrNight(day.weather[0].icon))}`" />
       </el-col>
       <el-col :span="3" :offset="2">
         <p class="dark-gray align-right">{{ round(day.main.temp_max) }}</p>
