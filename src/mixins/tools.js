@@ -33,13 +33,13 @@ export default {
         case '02d': return 'partlyCloudyIcon.svg';
         case '02n': return 'partlyCloudyNightIcon.svg';
         case '03d': return 'mostlyCloudyIcon.svg';
-        case '03n': return 'mostlyCloudyIcon.svg'; // corrigir
-        case '04d': return 'showersIcon.svg'; // corrigir
-        case '04n': return 'showersIcon.svg'; // corrigir
+        case '03n': return 'mostlyCloudyNightIcon.svg';
+        case '04d': return 'showersIcon.svg';
+        case '04n': return 'showersIcon.svg';
         case '09d': return 'rainyIcon.svg';
         case '09n': return 'rainyIcon.svg';
         case '10d': return 'sunnyShowersIcon.svg';
-        case '10n': return 'sunnyShowersIcon.svg'; // corrigir
+        case '10n': return 'nightShowersIcon.svg';
         case '11d': return 'thunderShowersIcon.svg';
         case '11n': return 'thunderShowersIcon.svg';
         case '13d': return 'snowShowersIcon.svg';
