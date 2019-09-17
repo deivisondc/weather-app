@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-container">
+  <div :class="weatherDetailClasses">
     <NavHeader>
     </NavHeader>
 
@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import tools from '@/mixins/tools';
+
 import storeHelper from '@/helpers/storeHelper';
 
 import NavHeader from '@/components/layout/NavHeader';
@@ -56,6 +58,7 @@ import ForecastInfo from '@/components/weatherDetails/ForecastInfo';
 import ForecastCurrentDayExtraInfo from '@/components/weatherDetails/ForecastCurrentDayExtraInfo';
 
 export default {
+  mixins: [ tools ],
   components: {
     NavHeader,
     CurrentWeather,
@@ -67,6 +70,13 @@ export default {
   },
   computed: {
     ...storeHelper,
+    weatherDetailClasses() {
+      return {
+        'weather-container': true,
+        'weather-container-background-day': !this.isNightTime(),
+        'weather-container-background-day': this.isNightTime(),
+      }
+    }
   },
   created() {
     this.$store.dispatch('weather/fetchWeatherFromCity');
@@ -76,13 +86,22 @@ export default {
 
 <style lang="scss" scoped>
   .weather-container {
-    background-color: #60B5CE;
     display: flex;
     flex-flow: column;
     height: 100%;
     min-height: 500px;
     max-height: 500px;
     border-radius: 8px;
+
+    &-background-day {
+      background: rgb(96,181,206);
+      background: linear-gradient(75deg, rgba(96,181,206,1) 65%, rgba(96,181,206,0.6) 66%);
+    }
+
+    &-background-night {
+      background: rgb(90,111,120);
+      background: linear-gradient(75deg, rgba(90,111,120,1) 65%, rgba(90,111,120,0.6) 66%);
+    }
   }
 
   .details-container {
