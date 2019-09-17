@@ -5,7 +5,7 @@
         <p class="dark-gray">{{ day.dt | moment('dddd') }}</p>
       </el-col>
       <el-col :span="5" :offset="1">
-        <img :src="`${getWeatherIcon(iconUrlDayOrNight(day.weather[0].icon))}`" />
+        <IconWrapper class="forecastIcon" :iconName="getWeatherIcon(iconUrlDayOrNight(day.weather[0].icon))"/>
       </el-col>
       <el-col :span="3" :offset="2">
         <p class="dark-gray align-right">{{ round(day.main.temp_max) }}</p>
@@ -20,8 +20,11 @@
 <script>
 import tools from '@/mixins/tools';
 
+import IconWrapper from '@/components/icons/IconWrapper';
+
 export default {
   mixins: [tools],
+  components: { IconWrapper },
   props: {
     forecastList: null,
   },
@@ -32,7 +35,7 @@ export default {
   },
   methods: {
     iconUrlDayOrNight(icon) {
-      if (this.$moment().hours() >= 18) {
+      if (this.isNightTime()) {
         return icon.replace('d', 'n');
       }
       return icon.replace('n', 'd');
@@ -49,7 +52,7 @@ export default {
     margin: 5px 0px;
   }
 
-  img {
+  .forecastIcon {
     max-height: 30px;
     max-width: 30px;
   }

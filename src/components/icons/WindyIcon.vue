@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<template>
 <svg version="1.1" id="windyIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="70px" height="70px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
+	 viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <g id="cloud1">
 	<circle fill="#D1D3D4" cx="54.5" cy="32.2" r="8.5"/>
 	<circle fill="#F1F2F2" cx="37" cy="30" r="6.8"/>
@@ -32,12 +30,70 @@
 		c1,1.6,2.7,2.6,4.7,2.6C20.8,20.9,23.3,18.4,23.3,15.4z"/>
 </g>
 <g id="dashedLines">
-	<path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,44.7c0,0-35.6,0-36.5,0"/>
-	<path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,47.4c0,0-42.1,0-42.1,0
+	<path id="stroke1" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,44.7c0,0-35.6,0-36.5,0"/>
+	<path id="stroke2" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,47.4c0,0-42.1,0-42.1,0
 		c-1.9,0-3.4-1.5-3.4-3.4s1.5-3.4,3.4-3.4h1.9"/>
-	<path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,52.7c0,0-28.1,0-28.1,0
+	<path id="stroke3" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,52.7c0,0-28.1,0-28.1,0
 		c-1.6,0-2.8,1.3-2.8,2.8s1.3,2.8,2.8,2.8h1.5"/>
-	<path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,49.8c0,0-37.1,0-37.1,0
+	<path id="stroke4" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M57.4,49.8c0,0-37.1,0-37.1,0
 		c-1.6,0-2.8,1.3-2.8,2.8s1.3,2.8,2.8,2.8h1.5"/>
 </g>
 </svg>
+</template>
+
+<script>
+export default {
+
+};
+</script>
+
+<style lang="scss" scoped>
+
+  #dashedLines path {
+    stroke-dasharray: 20px, 5px;
+  }
+
+  #stroke1 {
+    stroke-dashoffset: 75;
+    animation: stroke-animation1 3s infinite linear;
+  }
+
+  #stroke2 {
+    stroke-dashoffset: 77;
+    animation: stroke-animation2 3s infinite linear;
+  }
+
+  #stroke3 {
+    stroke-dashoffset: 80;
+    animation: stroke-animation3 3s infinite linear;
+  }
+
+  #stroke4 {
+    stroke-dashoffset: 82;
+    animation: stroke-animation4 3s infinite linear;
+  }
+
+  @keyframes stroke-animation1 {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes stroke-animation2 {
+    to {
+      stroke-dashoffset: 2;
+    }
+  }
+
+  @keyframes stroke-animation3 {
+    to {
+      stroke-dashoffset: 5;
+    }
+  }
+
+  @keyframes stroke-animation4 {
+    to {
+      stroke-dashoffset: 7;
+    }
+  }
+</style>

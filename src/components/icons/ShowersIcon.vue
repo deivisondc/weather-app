@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="showersIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" width="70px" height="70px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
+<template>
+  <svg version="1.1" id="showersIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <g id="rain">
-	<path fill="#33B5D9" d="M33.9,40.1c-0.1,0.5-0.4,3.1-0.9,3.9c-0.1,0.2-0.3,0.4-0.4,0.5c-0.4,0.2-0.8,0.3-1.1,0.1
+	<path id="droplet1" fill="#33B5D9" d="M33.9,40.1c-0.1,0.5-0.4,3.1-0.9,3.9c-0.1,0.2-0.3,0.4-0.4,0.5c-0.4,0.2-0.8,0.3-1.1,0.1
 		c-0.6-0.3-0.6-1.3-0.1-2.2C31.8,41.8,33.2,40.6,33.9,40.1z"/>
-	<path fill="#33B5D9" d="M31.1,41.9c0,0.3-0.2,1.9-0.5,2.4c-0.1,0.1-0.2,0.2-0.2,0.3c-0.2,0.1-0.5,0.2-0.7,0
+	<path id="droplet2" fill="#33B5D9" d="M31.1,41.9c0,0.3-0.2,1.9-0.5,2.4c-0.1,0.1-0.2,0.2-0.2,0.3c-0.2,0.1-0.5,0.2-0.7,0
 		c-0.4-0.2-0.4-0.8-0.1-1.3C29.9,43,30.7,42.3,31.1,41.9z"/>
-	<path fill="#33B5D9" d="M41.1,40.1c-0.1,0.5-0.4,3.1-0.9,3.9c-0.1,0.2-0.3,0.4-0.4,0.5c-0.4,0.2-0.8,0.3-1.1,0.1
+	<path id="droplet3" fill="#33B5D9" d="M41.1,40.1c-0.1,0.5-0.4,3.1-0.9,3.9c-0.1,0.2-0.3,0.4-0.4,0.5c-0.4,0.2-0.8,0.3-1.1,0.1
 		c-0.6-0.3-0.6-1.3-0.1-2.2C39,41.8,40.4,40.7,41.1,40.1z"/>
-	<path fill="#33B5D9" d="M26.1,40.1c-0.1,0.5-0.4,3.1-0.9,3.9c-0.1,0.2-0.3,0.4-0.4,0.5c-0.4,0.2-0.8,0.3-1.1,0.1
+	<path id="droplet4" fill="#33B5D9" d="M26.1,40.1c-0.1,0.5-0.4,3.1-0.9,3.9c-0.1,0.2-0.3,0.4-0.4,0.5c-0.4,0.2-0.8,0.3-1.1,0.1
 		c-0.6-0.3-0.6-1.3-0.1-2.2C24,41.8,25.4,40.7,26.1,40.1z"/>
 </g>
 <g id="cloud2">
@@ -68,3 +66,43 @@
 		c1.8,2.9,5,4.9,8.7,4.9C36.7,34,41.3,29.3,41.3,23.6z"/>
 </g>
 </svg>
+</template>
+
+<script>
+export default {
+}
+</script>
+
+<style lang="scss" scoped>
+
+  #droplet1 {
+    animation: droplet-animation 0.5s infinite linear;
+  }
+
+  #droplet2 {
+    animation: droplet-animation 0.55s infinite linear 0.2s;
+  }
+
+  #droplet3 {
+    animation: droplet-animation 0.6s infinite linear 0.3s;
+  }
+
+  #droplet4 {
+    animation: droplet-animation 0.65s infinite linear 0.4s;
+  }
+
+  @keyframes droplet-animation {
+    0% {
+      opacity: 1;
+      transform: translate(4px, 0px)
+    }
+    50% {
+      opacity: 1;
+      transform: translate(0px, 7.5px)
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-4px, 15px)
+    }
+  }
+</style>

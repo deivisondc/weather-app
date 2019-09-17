@@ -1,5 +1,6 @@
+<template>
 <svg version="1.1" id="clearNightIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" width="70px" height="70px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
+	 y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <g id="moon">
 	<circle fill="#F1E5A1" cx="32.6" cy="36.2" r="20"/>
 	<path fill="#F5EEBC" d="M12.7,36.2c0,6.5,3.1,12.2,7.9,15.9c1.5,0.3,3,0.5,4.6,0.5c11,0,20-8.9,20-20c0-6.5-3.1-12.2-7.9-15.9
@@ -23,3 +24,57 @@
 		C8.6,18.1,8.8,18.3,10.5,18.5z"/>
 </g>
 </svg>
+</template>
+
+<script>
+export default {
+
+};
+</script>
+
+<style lang="scss" scoped>
+
+  #star1 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear;
+  }
+
+  #star2 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.1s;
+  }
+  #star3 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.2s;
+  }
+  #star4 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.3s;
+  }
+  #star5 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.4s;
+  }
+  #star6 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.5s;
+  }
+  @keyframes star-animation {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+</style>

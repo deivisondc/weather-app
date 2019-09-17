@@ -8,7 +8,7 @@
     </el-col>
 
     <el-col :span="8">
-      <img v-if="weatherIcon" :src="weatherIconUrl" />
+      <IconWrapper class="mainIcon" :iconName="weatherIconUrl" />
     </el-col>
   </el-row>
 </template>
@@ -16,8 +16,11 @@
 <script>
 import tools from '@/mixins/tools';
 
+import IconWrapper from '@/components/icons/IconWrapper';
+
 export default {
   mixins: [tools],
+  components: { IconWrapper },
   props: {
     currentTemp: null,
     cityName: null,
@@ -38,7 +41,7 @@ export default {
     text-shadow: #444 0px 5px 6px;
   }
 
-  img {
+  .mainIcon {
     width: 9.5em;
     position: absolute;
     right: 0px;
