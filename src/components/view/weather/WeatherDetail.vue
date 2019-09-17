@@ -74,7 +74,7 @@ export default {
       return {
         'weather-container': true,
         'weather-container-background-day': !this.isNightTime(),
-        'weather-container-background-day': this.isNightTime(),
+        'weather-container-background-night': this.isNightTime(),
       }
     }
   },
