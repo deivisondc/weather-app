@@ -1,20 +1,29 @@
 <template>
-  <el-row type="flex" justify="space-between">
-    <el-col :span="16" class="main-weather-info">
+  <el-row type="flex">
+    <el-col :span="10" :offset="2">
       <el-row>
-        <p class="current-temp">{{ this.round(this.currentTemp) }}<sup class="degrees-symbol"> °C</sup></p>
-        <p class="city-name">{{ this.cityName }}</p>
+        <p v-if="isLoading" class="current-temp loading"></p>
+        <p v-if="isLoading" class="city-name loading"></p>
+
+        <p v-if="!isLoading" class="current-temp">
+          {{ this.round(this.currentTemp) }}<sup class="degrees-symbol"> °C</sup>
+        </p>
+        <p v-if="!isLoading" class="city-name">{{ this.cityName }}</p>
       </el-row>
     </el-col>
 
-    <el-col :span="8">
-      <IconWrapper class="mainIcon" :iconName="weatherIconUrl" />
+    <el-col :span="10" :offset="1">
+      <p v-if="isLoading" class="main-icon-placeholder loading"></p>
+      <IconWrapper v-if="!isLoading" class="main-icon" :iconName="weatherIconUrl" />
     </el-col>
+
   </el-row>
 </template>
 
 <script>
 import tools from '@/mixins/tools';
+
+import storeHelper from '@/helpers/storeHelper';
 
 import IconWrapper from '@/components/icons/IconWrapper';
 
@@ -27,6 +36,7 @@ export default {
     weatherIcon: null,
   },
   computed: {
+    ...storeHelper.computed,
     weatherIconUrl() { // ao meu ver nao tem necessidade de ser um computed aqui... perguntar pro helder
       return this.getWeatherIcon(this.weatherIcon);
     },
@@ -41,15 +51,19 @@ export default {
     text-shadow: #444 0px 5px 6px;
   }
 
-  .mainIcon {
+  .main-icon {
     width: 9.5em;
     position: absolute;
     right: 0px;
-    top: -40px;
+    top: -25px;
   }
 
-  .main-weather-info {
-    margin-left: 40px;
+  .main-icon-placeholder {
+    font-size: 4.5em;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    height: 1.3em;
+    border-radius: 50%;
   }
 
   .current-temp {
@@ -57,6 +71,7 @@ export default {
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 0px;
+    height: 1em;
   }
 
   .degrees-symbol {
@@ -68,7 +83,7 @@ export default {
 
   .city-name {
     text-transform: capitalize;
-    margin-top: -5px;
+    margin-top: 5px;
     margin-bottom: 20px;
   }
 </style>

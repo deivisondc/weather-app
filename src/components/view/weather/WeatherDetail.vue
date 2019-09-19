@@ -1,6 +1,10 @@
 <template>
   <div :class="weatherDetailClasses">
-    <NavHeader>
+
+    <NavHeader
+      @clickBack="goBack"
+      @clickList="goList"
+      @clickNext="goNext">
     </NavHeader>
 
     <CurrentWeather
@@ -69,7 +73,7 @@ export default {
     ForecastCurrentDayExtraInfo,
   },
   computed: {
-    ...storeHelper,
+    ...storeHelper.computed,
     weatherDetailClasses() {
       return {
         'weather-container': true,
@@ -79,8 +83,23 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('weather/fetchWeatherFromCity');
+    if (this.$route.params.cityId == "1") {
+      this.$store.dispatch('weather/fetchWeatherFromCity', 1);
+    } else {
+      this.$store.dispatch('weather/fetchWeatherFromCity', 2);
+    }
   },
+  methods: {
+    goBack() {
+      this.$store.dispatch('weather/changeCity', 1)
+    },
+    goList() {
+
+    },
+    goNext() {
+      this.$store.dispatch('weather/changeCity', 2)
+    }
+  }
 };
 </script>
 

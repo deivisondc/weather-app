@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import router from '@/router';
 import axios from '@/services/axios';
 
 export default {
@@ -16,19 +17,29 @@ export default {
       uvi: {},
     },
     forecast: {},
+    isLoading: true,
   },
 
   getters: {
     weather: state => state.weather,
     forecast: state => state.forecast,
+    isLoading: state => state.isLoading,
   },
 
   actions: {
     async fetchWeatherFromCity({ commit }, city) {
-      city = {
-        id: 123,
-        name: 'Bauru',
-      };
+      commit('setIsLoading', true);
+      if (city == 1) {
+        city = {
+          id: 123,
+          name: 'Bauru',
+        };
+      } else {
+        city = {
+          id: 123,
+          name: 'New York',
+        };
+      }
 
       const params = {
         q: city.name,
@@ -46,9 +57,6 @@ export default {
           res.data.uvi = (await axios.get('uvi', { params })).data;
           return res.data;
         });
-
-      // console.log('vuex weather', weather)
-      // console.log('vuex forecast', forecast)
 
       const forecastListFiltered = {};
       if (forecast.list) {
@@ -75,10 +83,18 @@ export default {
 
       commit('fetchWeatherData', weather);
       commit('fetchForecastData', forecast);
+      commit('setIsLoading', false);
     },
+
+    changeCity({ commit }, city) {
+      router.push({ name: 'WeatherDetail', params: { cityId: city } })
+    }
   },
 
   mutations: {
+    setIsLoading(state, isLoading) {
+      state.isLoading = isLoading;
+    },
     fetchWeatherData(state, payload) {
       state.weather = payload;
     },

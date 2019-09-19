@@ -1,5 +1,9 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  ...mapGetters('weather', ['weather', 'forecast']),
+  computed: {
+    ...mapGetters('weather', ['weather', 'forecast', 'isLoading']),
+  },
+  methods: {
+  },
 };

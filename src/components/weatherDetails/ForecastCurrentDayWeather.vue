@@ -1,29 +1,45 @@
 <template>
   <el-row :gutter="5">
-    <el-col :span="5">
-      <p class="light-gray">Today</p>
-    </el-col>
-    <el-col :span="5">
-      <p class="dark-gray">{{ new Date() | moment('dddd') }}</p>
-    </el-col>
+    <span v-if="isLoading">
+      <el-col :span="14">
+        <p class="loading"></p>
+      </el-col>
+      <el-col :span="6" :offset="4">
+        <p class="loading"></p>
+      </el-col>
+    </span>
 
-    <el-col :span="3" :offset="7">
-      <p class="dark-gray align-right">{{ this.round(this.maxTemperature) }}</p>
-    </el-col>
-    <el-col :span="3">
-      <p class="light-gray align-right">{{ this.round(this.minTemperature) }}</p>
-    </el-col>
+    <span v-if="!isLoading">
+      <el-col :span="5">
+        <p class="light-gray">Today</p>
+      </el-col>
+      <el-col :span="5">
+        <p class="dark-gray">{{ new Date() | moment('dddd') }}</p>
+      </el-col>
+
+      <el-col :span="3" :offset="8">
+        <p class="dark-gray align-right">{{ this.round(this.maxTemperature) }}</p>
+      </el-col>
+      <el-col :span="3">
+        <p class="light-gray align-right">{{ this.round(this.minTemperature) }}</p>
+      </el-col>
+    </span>
   </el-row>
 </template>
 
 <script>
 import tools from '@/mixins/tools';
 
+import storeHelper from '@/helpers/storeHelper';
+
 export default {
   mixins: [tools],
   props: {
     maxTemperature: null,
     minTemperature: null,
+  },
+  computed: {
+    ...storeHelper.computed,
   },
 };
 </script>
