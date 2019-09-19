@@ -1,14 +1,35 @@
 <template>
-  <el-row>
-    <el-col :span="24">
+  <el-row type="flex" justify="space-between" class="force-top-position">
+    <el-col :span="8">
       <el-button
         type="text"
-        class="back-button"
+        class="nav-button back-button"
         size="medium"
-        icon="el-icon-arrow-left"
-        @click="$emit('click')"
+        @click="$emit('clickBack')"
       >
+      <i class="el-icon-arrow-left"/>
       Back
+      </el-button>
+    </el-col>
+    <el-col :span="8" class="align-center">
+      <el-button
+        type="text"
+        class="nav-button"
+        size="medium"
+        @click="$emit('clickList')"
+      >
+      List
+      </el-button>
+    </el-col>
+    <el-col :span="8" class="align-right">
+      <el-button
+        type="text"
+        class="nav-button next-button"
+        size="medium"
+        @click="$emit('clickNext')"
+      >
+      Next
+      <i class="el-icon-arrow-right"/>
       </el-button>
     </el-col>
   </el-row>
@@ -20,14 +41,34 @@ export default {
 };
 </script>
 
-<style scoped>
-  .back-button {
-    color: #555;
-    margin-left: 10px;
-    margin-top: 5px;
+<style lang="scss" scoped>
+  .force-top-position {
+    z-index: 9000;
   }
 
-  .back-button:hover {
-    color: #000
+  .nav-button {
+    color: #FFFFFF;
+    margin-top: 5px;
+
+    &:hover {
+      color: #FFFFFF;
+      text-shadow: #444 0px 4px 5px;
+    }
+  }
+
+  .back-button {
+    margin-left: 10px;
+  }
+
+  .next-button {
+    margin-right: 10px;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  .align-right {
+    text-align: right;
   }
 </style>
