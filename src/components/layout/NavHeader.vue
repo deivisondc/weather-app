@@ -53,13 +53,13 @@ export default {
       type: Boolean,
       default: true,
     },
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
   .force-top-position {
-    z-index: 9000;
+    z-index: 1;
   }
 
   .nav-button {

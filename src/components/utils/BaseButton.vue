@@ -10,11 +10,11 @@
 <script>
 export default {
   props: {
-    innerText: '',
+    innerText: String,
     type: {
       type: String,
-      default: 'success'
-    }
+      default: 'success',
+    },
   },
   methods: {
     click() {

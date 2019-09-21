@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <svg version="1.1" id="thundershowersIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
       y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
     <path id="lightning" fill="#FF9B00" d="M34.9,39.2l-5.1,6.7L29.4,45h4.1h1.2L34,45.9l-4.7,5.8c-0.1,0.1-0.3,0.1-0.4,0
@@ -78,12 +79,13 @@
         c-1.4,2.2-3.8,3.7-6.6,3.7C33.5,32.4,30,28.9,30,24.6z"/>
     </g>
   </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>
 export default {
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

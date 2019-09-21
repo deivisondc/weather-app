@@ -7,7 +7,7 @@
 <script>
 export default {
 
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -16,7 +16,6 @@ export default {
     width: 23%;
     min-height: 500px;
     border-radius: 8px;
-    // padding: 20px 20px;
     background-color: #fff;
     box-shadow: 0 0 1em #000;
   }

@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <svg
     version="1.1"
     id="rainyIcon"
@@ -150,6 +151,7 @@
             C64.9,36.1,62.8,34.1,60.2,34.1z"/>
     </g>
   </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>

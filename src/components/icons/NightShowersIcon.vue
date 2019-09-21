@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <svg
     version="1.1"
     id="sunnyShowersIcon"
@@ -93,6 +94,7 @@
     d="M59.3,39c-2.9,0-5.3,2.2-5.6,5c0.2,2.9,2.7,5.2,5.6,5.2c2.9,0,5.3-2.2,5.6-5.1C64.6,41.2,62.2,39,59.3,39z"/>
     </g>
   </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>

@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <svg version="1.1" id="showersIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <g id="rain">
@@ -66,11 +67,12 @@
 		c1.8,2.9,5,4.9,8.7,4.9C36.7,34,41.3,29.3,41.3,23.6z"/>
 </g>
 </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>
 export default {
-}
+};
 </script>
 
 <style lang="scss" scoped>

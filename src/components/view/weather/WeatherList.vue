@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import tools from "@/mixins/tools";
+import tools from '@/mixins/tools';
 
 import NavHeader from '@/components/layout/NavHeader';
 import IconWrapper from '@/components/icons/IconWrapper';
@@ -46,7 +46,7 @@ export default {
         'weather-container': true,
         'weather-container-background-day': !this.isNightTime(),
         'weather-container-background-night': this.isNightTime(),
-      }
+      };
     },
     weatherList() {
       if (localStorage.getItem('cities')) {
@@ -71,7 +71,7 @@ export default {
         'weather-buttom-added': true,
         'weather-buttom-added-day-bg': !nightTime,
         'weather-buttom-added-night-bg': nightTime,
-      }
+      };
     },
   },
 };

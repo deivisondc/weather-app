@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import BaseLayout from "@/components/layout/BaseLayout";
+import BaseLayout from '@/components/layout/BaseLayout';
 
 export default {
   components: { BaseLayout },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -81,7 +81,7 @@ export default {
     ...storeHelper.computed,
     windArrowStyle() {
       return {
-        transform: `rotate(${this.windDegrees}deg)`
+        transform: `rotate(${this.windDegrees}deg)`,
       };
     },
   },

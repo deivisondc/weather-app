@@ -13,7 +13,7 @@ module.exports = {
     'import/extensions': 'off',
     'max-len': [1, 120],
     "vue/max-attributes-per-line": ["error", {
-      "singleline": 4,
+      "singleline": 3,
       "multiline": {
         "max": 1,
         "allowFirstLine": false

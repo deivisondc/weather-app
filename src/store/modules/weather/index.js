@@ -113,7 +113,7 @@ export default {
         });
     },
 
-    changeCity({ commit }, cityId) {
+    changeCity(context, cityId) {
       router.push({ name: 'WeatherDetail', params: { cityId } });
     },
   },

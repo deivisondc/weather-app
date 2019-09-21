@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
 <svg version="1.1" id="clearNightIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <g id="moon">
@@ -24,6 +25,7 @@
 		C8.6,18.1,8.8,18.3,10.5,18.5z"/>
 </g>
 </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>

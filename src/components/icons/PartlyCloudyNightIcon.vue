@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <svg version="1.1" id="partlyCloudyNightIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px" y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
     <g id="moon">
@@ -31,12 +32,13 @@
     </g>
 
   </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>
 export default {
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

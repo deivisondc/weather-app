@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <svg version="1.1" id="windySunnyIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <g id="sun_1_">
@@ -31,12 +32,13 @@
 		<line id="stroke9" fill="none" stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="round" stroke-miterlimit="10" x1="27.8" y1="60.1" x2="50" y2="60.1"/>
 </g>
 </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>
 export default {
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

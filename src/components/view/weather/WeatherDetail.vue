@@ -64,7 +64,7 @@ import ForecastInfo from '@/components/weatherDetails/ForecastInfo';
 import ForecastCurrentDayExtraInfo from '@/components/weatherDetails/ForecastCurrentDayExtraInfo';
 
 export default {
-  mixins: [ tools ],
+  mixins: [tools],
   components: {
     NavHeader,
     CurrentWeather,
@@ -74,11 +74,6 @@ export default {
     ForecastInfo,
     ForecastCurrentDayExtraInfo,
   },
-  watch: {
-    weather(val) {
-      console.log('watch', val)
-    }
-  },
   computed: {
     ...storeHelper.computed,
     rain() {
@@ -87,29 +82,29 @@ export default {
           return this.weather.rain['1h'];
         }
         if (this.weather.rain['3h']) {
-          this.weather.rain['3h'];
+          return this.weather.rain['3h'];
         }
       }
       return 0;
     },
     cityIdIndex() {
       const cities = JSON.parse(localStorage.getItem('cities'));
-      return cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId));
+      return cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
     },
     citiesListLength() {
       if (!localStorage.getItem('cities')) {
         return 0;
       }
-      return JSON.parse(localStorage.getItem('cities')).length
+      return JSON.parse(localStorage.getItem('cities')).length;
     },
     showBack() {
-      if (this.cityIdIndex == 0) {
+      if (this.cityIdIndex === 0) {
         return false;
       }
       return true;
     },
     showNext() {
-      if (this.cityIdIndex == this.citiesListLength - 1) {
+      if (this.cityIdIndex === this.citiesListLength - 1) {
         return false;
       }
       return true;
@@ -119,8 +114,8 @@ export default {
         'weather-container': true,
         'weather-container-background-day': !this.isNightTime(),
         'weather-container-background-night': this.isNightTime(),
-      }
-    }
+      };
+    },
   },
   created() {
     this.$store.dispatch('weather/fetchWeatherFromCity', this.$route.params.cityId);
@@ -128,11 +123,11 @@ export default {
   methods: {
     goBack() {
       const cities = JSON.parse(localStorage.getItem('cities'));
-      const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId));
+      const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
       this.$store.dispatch('weather/changeCity', cities[index - 1].id);
     },
     goList() {
-      this.$router.push({ name: 'WeatherList' })
+      this.$router.push({ name: 'WeatherList' });
     },
     goNext() {
       const cities = JSON.parse(localStorage.getItem('cities'));

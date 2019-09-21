@@ -8,10 +8,10 @@ import icons from '@/components/icons';
 
 export default {
   components: {
-    ...icons
+    ...icons,
   },
   props: {
-    iconName: ''
+    iconName: String,
   },
 };
 </script>

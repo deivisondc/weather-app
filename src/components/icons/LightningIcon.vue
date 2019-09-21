@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <svg version="1.1" id="lightningIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
       y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
     <path id="lightning" fill="#FF9B00" d="M40,39.7l-6.4,8.5L33,47h5.3h1.5l-0.9,1.2l-6,7.4c-0.1,0.2-0.3,0.2-0.5,0.1
@@ -52,12 +53,13 @@
         />
     </g>
   </svg>
+<!-- eslint-enable -->
 </template>
 
 <script>
 export default {
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

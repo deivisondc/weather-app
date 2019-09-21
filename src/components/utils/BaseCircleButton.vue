@@ -3,7 +3,7 @@
     circle
     :disabled="disabled"
     :type="color"
-    @click="teste">
+    @click="click">
   </el-button>
 </template>
 
@@ -14,10 +14,10 @@ export default {
     disabled: Boolean,
   },
   methods: {
-    teste() {
-      this.$emit('click', 'WeatherList')
-    }
-  }
+    click() {
+      this.$emit('click', 'WeatherList');
+    },
+  },
 };
 </script>
 
