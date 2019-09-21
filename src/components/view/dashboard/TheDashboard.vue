@@ -15,10 +15,10 @@
           type="primary">
         <el-button> -->
         <div class="buttons-row">
-          <BaseButton :disabled="i !== 2" :color="i == 2 ? 'primary' : 'info'" v-for="i in 3" :key="i" @click="handleClick"/>
+          <BaseCircleButton :disabled="i !== 2" :color="i == 2 ? 'primary' : 'info'" v-for="i in 3" :key="i" @click="handleClick"/>
         </div>
         <div class="buttons-row">
-          <BaseButton :disabled="true" color="info" v-for="i in 3" :key="i"/>
+          <BaseCircleButton :disabled="true" color="info" v-for="i in 3" :key="i"/>
         </div>
 
       </div>
@@ -27,10 +27,10 @@
 
 <script>
 import BaseLayout from '@/components/layout/BaseLayout';
-import BaseButton from '@/components/utils/BaseButton';
+import BaseCircleButton from '@/components/utils/BaseCircleButton';
 
 export default {
-  components: { BaseLayout, BaseButton },
+  components: { BaseLayout, BaseCircleButton },
   data() {
     return {
       time: new Date(),

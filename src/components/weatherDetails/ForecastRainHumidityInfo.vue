@@ -4,7 +4,7 @@
     <el-col :span="12">
       <el-row type="flex" justify="center">
         <p v-if="isLoading" class="loading light-blue-placeholder"></p>
-        <p v-if="!isLoading" class="light-blue">{{ this.rain }}mm</p>
+        <p v-if="!isLoading" class="light-blue">{{ this.round(this.rain, 1) }}mm</p>
       </el-row>
       <el-row type="flex" justify="center">
         <p v-if="isLoading" class="loading"></p>

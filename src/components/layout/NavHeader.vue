@@ -2,6 +2,7 @@
   <el-row type="flex" justify="space-between" class="force-top-position">
     <el-col :span="8">
       <el-button
+        v-if="showBack"
         type="text"
         class="nav-button back-button"
         size="medium"
@@ -13,6 +14,7 @@
     </el-col>
     <el-col :span="8" class="align-center">
       <el-button
+        v-if="showList"
         type="text"
         class="nav-button"
         size="medium"
@@ -23,6 +25,7 @@
     </el-col>
     <el-col :span="8" class="align-right">
       <el-button
+        v-if="showNext"
         type="text"
         class="nav-button next-button"
         size="medium"
@@ -37,7 +40,20 @@
 
 <script>
 export default {
-
+  props: {
+    showBack: {
+      type: Boolean,
+      default: true,
+    },
+    showList: {
+      type: Boolean,
+      default: true,
+    },
+    showNext: {
+      type: Boolean,
+      default: true,
+    },
+  }
 };
 </script>
 

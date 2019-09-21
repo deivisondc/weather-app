@@ -16,7 +16,7 @@
         <el-col :span="16">
           <p class="dark-gray">
             <span>
-              <img id="windArrow" src="@/assets/arrow.png"/>
+              <img id="windArrow" src="@/assets/arrow.png" :style="windArrowStyle"/>
             </span>
             {{ round(convertMpsToKmh(this.windSpeed), 1) }} km/h
           </p>
@@ -77,13 +77,13 @@ export default {
     visibility: null,
     uvi: null,
   },
-  watch: {
-    windDegrees(val) {
-      document.getElementById('windArrow').setAttribute('style', `transform: rotate(${val}deg)`);
-    },
-  },
   computed: {
     ...storeHelper.computed,
+    windArrowStyle() {
+      return {
+        transform: `rotate(${this.windDegrees}deg)`
+      };
+    },
   },
 };
 </script>

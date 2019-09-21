@@ -23,12 +23,12 @@ function convertApiIconToSvg(apiIcon) {
 
     default: return apiIcon;
   }
-};
+}
 
 export default {
   methods: {
     isNightTime() {
-      return this.$moment().hours() >= 18;
+      return this.$moment().hours() <= 6 || this.$moment().hours() >= 18;
     },
     round(value, precision) {
       if (precision && precision > 0) {
