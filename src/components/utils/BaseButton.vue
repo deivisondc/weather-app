@@ -1,30 +1,29 @@
 <template>
   <el-button
-    circle
-    :disabled="disabled"
-    :type="color"
-    @click="teste">
+    round
+    :type="type"
+    @click="click">
+    {{ innerText }}
   </el-button>
 </template>
 
 <script>
 export default {
   props: {
-    color: String,
-    disabled: Boolean,
+    innerText: '',
+    type: {
+      type: String,
+      default: 'success'
+    }
   },
   methods: {
-    teste() {
-      this.$emit('click', 'WeatherList')
-    }
-  }
+    click() {
+      this.$emit('click');
+    },
+  },
 };
 </script>
 
-<style scoped>
-  .el-button {
-    width: 80px;
-    height: 80px;
-  }
+<style lang="scss" scoped>
 
 </style>

@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0px;
 }
@@ -27,6 +27,30 @@ body {
   height: 100%;
   width: 100%;
 }
+
+  p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #FFF;
+  }
+
+  .weather-container {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    min-height: 500px;
+    max-height: 500px;
+    border-radius: 8px;
+
+    &-background-day {
+      background: rgb(96,181,206);
+      background: linear-gradient(75deg, rgba(96,181,206,1) 65%, rgba(96,181,206,0.6) 66%);
+    }
+
+    &-background-night {
+      background: rgb(90,111,120);
+      background: linear-gradient(75deg, rgba(90,111,120,1) 65%, rgba(90,111,120,0.6) 66%);
+    }
+  }
 
 .loading {
   width: 100%;

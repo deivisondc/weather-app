@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import router from '@/router';
 import axios from '@/services/axios';
+import tools from '@/mixins/tools';
 
 export default {
   namespaced: true,
 
   state: {
+    cityId: null,
     weather: {
       main: {},
       weather: [
@@ -21,28 +23,18 @@ export default {
   },
 
   getters: {
+    cityId: state => state.cityId,
     weather: state => state.weather,
     forecast: state => state.forecast,
     isLoading: state => state.isLoading,
   },
 
   actions: {
-    async fetchWeatherFromCity({ commit }, city) {
+    async fetchWeatherFromCity({ commit }, cityId) {
       commit('setIsLoading', true);
-      if (city == 1) {
-        city = {
-          id: 123,
-          name: 'Bauru',
-        };
-      } else {
-        city = {
-          id: 123,
-          name: 'New York',
-        };
-      }
 
       const params = {
-        q: city.name,
+        id: cityId,
         APPID: process.env.VUE_APP_OPENWEATHER_API_KEY,
         lang: 'pt',
         units: 'metric',
@@ -81,14 +73,49 @@ export default {
         forecast.list.push(forecastListFiltered[key]);
       });
 
+      let cities = [];
+      if (localStorage.getItem('cities')) {
+        cities = JSON.parse(localStorage.getItem('cities'), true);
+
+        const index = cities.map(m => m.id).indexOf(parseInt(cityId, 10));
+        if (index > -1) {
+          cities[index].icon = tools.methods.getWeatherIcon(weather.weather[0].icon);
+          cities[index].nightTime = Vue.moment().hours() <= 6 || Vue.moment().hours() >= 18;
+        }
+
+        localStorage.setItem('cities', JSON.stringify(cities));
+      }
+
+
       commit('fetchWeatherData', weather);
       commit('fetchForecastData', forecast);
       commit('setIsLoading', false);
     },
 
-    changeCity({ commit }, city) {
-      router.push({ name: 'WeatherDetail', params: { cityId: city } })
-    }
+    async addNewCity(context, cityName) {
+      const params = {
+        q: cityName,
+        APPID: process.env.VUE_APP_OPENWEATHER_API_KEY,
+        lang: 'pt',
+        units: 'metric',
+      };
+
+      await axios.get('weather', { params })
+        .then((res) => {
+          let cities = [];
+          if (localStorage.getItem('cities')) {
+            cities = JSON.parse(localStorage.getItem('cities'), true);
+          }
+
+          cities.push({ id: res.data.id, name: res.data.name });
+          localStorage.setItem('cities', JSON.stringify(cities));
+          router.push({ name: 'WeatherDetail', params: { cityId: res.data.id } });
+        });
+    },
+
+    changeCity({ commit }, cityId) {
+      router.push({ name: 'WeatherDetail', params: { cityId } });
+    },
   },
 
   mutations: {

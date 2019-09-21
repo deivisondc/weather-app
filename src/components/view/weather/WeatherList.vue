@@ -1,69 +1,139 @@
 <template>
-  <div class="list-container">
-    <div style="margin='0 auto'">
-      <button class="weather-item add-weather-city" @click="addWeather">
-        <span class="add-button"> + </span>
+  <div :class="backgroundClasses">
+    <NavHeader
+      @clickBack="back"
+      :showList="false"
+      :showNext="false"
+    />
+    <el-row type="flex" justify="center">
+      <p>Select a city or add a new one</p>
+    </el-row>
+    <el-row type="flex" class="cities-list">
+      <button class="weather-buttom weather-buttom-add" @click="addWeather">
+        <p>+</p>
       </button>
-      <button v-for="i in weatherList" :key="i" class="weather-item added-weather-city" @click="weatherDetail(i)">
-        {{ i }}
+      <button
+        v-for="(value, key) in weatherList"
+        :key="key"
+        :class="buttomClasses(value.nightTime)"
+        @click="weatherDetail(value.id)"
+      >
+        <IconWrapper
+          class="weather-buttom-icon"
+          :iconName="value.icon"
+        />
+        <p class="city-name">{{ value.name }}</p>
       </button>
-
-    </div>
+    </el-row>
   </div>
 </template>
 
 <script>
-import BaseLayout from "@/components/layout/BaseLayout";
+import tools from "@/mixins/tools";
+
+import NavHeader from '@/components/layout/NavHeader';
+import IconWrapper from '@/components/icons/IconWrapper';
 
 export default {
-  components: { BaseLayout },
-  data() {
-    return {
-      weatherList: [1,2,3,4,5]
-    };
+  mixins: [tools],
+  components: {
+    NavHeader,
+    IconWrapper,
+  },
+  computed: {
+    backgroundClasses() {
+      return {
+        'weather-container': true,
+        'weather-container-background-day': !this.isNightTime(),
+        'weather-container-background-night': this.isNightTime(),
+      }
+    },
+    weatherList() {
+      if (localStorage.getItem('cities')) {
+        return JSON.parse(localStorage.getItem('cities'));
+      }
+      return [];
+    },
   },
   methods: {
+    back() {
+      this.$router.push({ name: 'Dashboard' });
+    },
     addWeather() {
-      this.weatherList.push("teste");
+      this.$router.push({ name: 'WeatherNewCity' });
     },
     weatherDetail(cityId) {
-      this.$router.push({ name: "WeatherDetail", params: { cityId } });
-    }
+      this.$router.push({ name: 'WeatherDetail', params: { cityId } });
+    },
+    buttomClasses(nightTime) {
+      return {
+        'weather-buttom': true,
+        'weather-buttom-added': true,
+        'weather-buttom-added-day-bg': !nightTime,
+        'weather-buttom-added-night-bg': nightTime,
+      }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  .list-container {
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    display: flex;
-    flex: 1 1 auto;
-  }
-  .weather-list-container {
-    display: flex;
-    justify-content: flex-start;
+  .cities-list {
+    margin: 0 20px;
+    justify-content: left;
     flex-wrap: wrap;
   }
 
-  .weather-item {
+  .weather-buttom {
+    position: relative;
+    margin: 10px 5px;
+    padding: 0;
     width: 80px;
     height: 80px;
     border-radius: 5px;
-    margin: 10px;
+    overflow: hidden;
+
+    &-add {
+      border: 1px #000 dotted;
+      background-color: rgba(238, 238, 238, 0.7);
+
+      & > p {
+        color: #000;
+        font-size: 3em;
+        margin: 0;
+      }
+    }
+
+    &-added {
+      border: 1px #000 solid;
+
+      &-day-bg {
+        background: #FFF;
+        background-color: rgb(208, 238, 247);
+      }
+
+      &-night-bg {
+        background: #FFF;
+        background-color: #4e585d;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 100px;
+      opacity: 0.8
+    }
+
   }
 
-  .add-weather-city {
-    border: 1px #000 dotted;
-    background-color: #eee;
+  .city-name {
+    color: #000;
+    position: relative;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 0px;
   }
 
-  .add-button {
-    font-weight: bold
-  }
-
-  .added-weather-city {
-    border: 1px #000 solid;
-    background-color: #b9b9ff;
-  }
 </style>

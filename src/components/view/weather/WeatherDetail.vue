@@ -4,7 +4,9 @@
     <NavHeader
       @clickBack="goBack"
       @clickList="goList"
-      @clickNext="goNext">
+      @clickNext="goNext"
+      :showBack="showBack"
+      :showNext="showNext">
     </NavHeader>
 
     <CurrentWeather
@@ -23,7 +25,7 @@
 
       <template v-slot:rainHumidityInfo>
         <ForecastRainHumidityInfo
-          :rain="weather.rain ? weather.rain['1h'] : 0"
+          :rain="rain"
           :humidity="weather.main.humidity">
         </ForecastRainHumidityInfo>
       </template>
@@ -72,8 +74,46 @@ export default {
     ForecastInfo,
     ForecastCurrentDayExtraInfo,
   },
+  watch: {
+    weather(val) {
+      console.log('watch', val)
+    }
+  },
   computed: {
     ...storeHelper.computed,
+    rain() {
+      if (this.weather.rain) {
+        if (this.weather.rain['1h']) {
+          return this.weather.rain['1h'];
+        }
+        if (this.weather.rain['3h']) {
+          this.weather.rain['3h'];
+        }
+      }
+      return 0;
+    },
+    cityIdIndex() {
+      const cities = JSON.parse(localStorage.getItem('cities'));
+      return cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId));
+    },
+    citiesListLength() {
+      if (!localStorage.getItem('cities')) {
+        return 0;
+      }
+      return JSON.parse(localStorage.getItem('cities')).length
+    },
+    showBack() {
+      if (this.cityIdIndex == 0) {
+        return false;
+      }
+      return true;
+    },
+    showNext() {
+      if (this.cityIdIndex == this.citiesListLength - 1) {
+        return false;
+      }
+      return true;
+    },
     weatherDetailClasses() {
       return {
         'weather-container': true,
@@ -83,46 +123,27 @@ export default {
     }
   },
   created() {
-    if (this.$route.params.cityId == "1") {
-      this.$store.dispatch('weather/fetchWeatherFromCity', 1);
-    } else {
-      this.$store.dispatch('weather/fetchWeatherFromCity', 2);
-    }
+    this.$store.dispatch('weather/fetchWeatherFromCity', this.$route.params.cityId);
   },
   methods: {
     goBack() {
-      this.$store.dispatch('weather/changeCity', 1)
+      const cities = JSON.parse(localStorage.getItem('cities'));
+      const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId));
+      this.$store.dispatch('weather/changeCity', cities[index - 1].id);
     },
     goList() {
-
+      this.$router.push({ name: 'WeatherList' })
     },
     goNext() {
-      this.$store.dispatch('weather/changeCity', 2)
-    }
-  }
+      const cities = JSON.parse(localStorage.getItem('cities'));
+      const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
+      this.$store.dispatch('weather/changeCity', cities[index + 1].id);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-  .weather-container {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    min-height: 500px;
-    max-height: 500px;
-    border-radius: 8px;
-
-    &-background-day {
-      background: rgb(96,181,206);
-      background: linear-gradient(75deg, rgba(96,181,206,1) 65%, rgba(96,181,206,0.6) 66%);
-    }
-
-    &-background-night {
-      background: rgb(90,111,120);
-      background: linear-gradient(75deg, rgba(90,111,120,1) 65%, rgba(90,111,120,0.6) 66%);
-    }
-  }
-
   .details-container {
     display: flex;
     flex-direction: row;
