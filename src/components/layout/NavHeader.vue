@@ -43,7 +43,7 @@ export default {
   props: {
     previousLabel: {
       type: String,
-      default: "Previous"
+      default: 'Previous',
     },
     showPrevious: {
       type: Boolean,
@@ -70,7 +70,7 @@ export default {
     color: #FFFFFF;
     margin-top: 5px;
 
-    &:hover {
+    &:hover, &:focus, &:active {
       color: #FFFFFF;
       text-shadow: #444 0px 4px 5px;
     }

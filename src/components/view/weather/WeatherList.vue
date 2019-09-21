@@ -1,11 +1,5 @@
 <template>
-  <div :class="backgroundClasses" style="overflow-y: overlay">
-    <NavHeader
-      previousLabel="Exit"
-      @clickPrevious="goPrevious"
-      :showList="false"
-      :showNext="false"
-    />
+  <div v-dragscroll class="container">
     <el-row type="flex" justify="center">
       <p>Select a city or add a new one</p>
     </el-row>
@@ -32,15 +26,16 @@
 </template>
 
 <script>
+import { dragscroll } from 'vue-dragscroll';
+
 import tools from '@/mixins/tools';
 
-import NavHeader from '@/components/layout/NavHeader';
 import IconWrapper from '@/components/icons/IconWrapper';
 
 export default {
   mixins: [tools],
+  directives: { dragscroll },
   components: {
-    NavHeader,
     IconWrapper,
   },
   computed: {
@@ -59,9 +54,6 @@ export default {
     },
   },
   methods: {
-    goPrevious() {
-      this.$router.push({ name: 'Dashboard' });
-    },
     addWeather() {
       this.$store.dispatch('weather/openNewCityForm');
     },
@@ -82,15 +74,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .container {
+    overflow-y: hidden;
+  }
+
   .cities-list {
-    margin: 0 20px;
+    margin: 0 15px;
     justify-content: left;
     flex-wrap: wrap;
   }
 
   .weather-buttom {
     position: relative;
-    margin: 10px 5px;
+    margin: 5px 7px;
     padding: 0;
     width: 80px;
     height: 80px;

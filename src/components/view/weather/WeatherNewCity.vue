@@ -1,12 +1,5 @@
 <template>
-  <div :class="weatherDetailClasses">
-    <NavHeader
-      previousLabel="Back"
-      @clickPrevious="goPrevious"
-      :showList="false"
-      :showNext="false">
-    </NavHeader>
-
+  <div class="container">
     <div class="modal" v-if="isSearchingCity">
       <el-row class="loader">
         <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
@@ -46,13 +39,11 @@ import tools from '@/mixins/tools';
 import storeHelper from '@/helpers/storeHelper';
 
 import BaseButton from '@/components/utils/BaseButton';
-import NavHeader from '@/components/layout/NavHeader';
 
 export default {
   mixins: [tools],
   components: {
     BaseButton,
-    NavHeader,
   },
   data() {
     return {
@@ -71,12 +62,6 @@ export default {
     },
   },
   methods: {
-    goPrevious() {
-      this.$router.push({ name: 'WeatherList' });
-    },
-    teste() {
-      console.log('event')
-    },
     confirm() {
       this.$store.dispatch('weather/addNewCity', this.cityName);
     },
@@ -85,33 +70,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  p {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #FFF;
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
   }
 
   .error {
     color: #F00;
     min-height: 18px;
-  }
-
-  .weather-container {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    min-height: 500px;
-    max-height: 500px;
-    border-radius: 8px;
-
-    &-background-day {
-      background: rgb(96,181,206);
-      background: linear-gradient(75deg, rgba(96,181,206,1) 65%, rgba(96,181,206,0.6) 66%);
-    }
-
-    &-background-night {
-      background: rgb(90,111,120);
-      background: linear-gradient(75deg, rgba(90,111,120,1) 65%, rgba(90,111,120,0.6) 66%);
-    }
   }
 
   .main-row {

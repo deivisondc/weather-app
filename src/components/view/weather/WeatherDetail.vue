@@ -1,14 +1,5 @@
 <template>
-  <div :class="weatherDetailClasses">
-
-    <NavHeader
-      @clickPrevious="goPrevious"
-      @clickList="goList"
-      @clickNext="goNext"
-      :showPrevious="showPrevious"
-      :showNext="showNext">
-    </NavHeader>
-
+  <div v-dragscroll class="container">
     <CurrentWeather
       :currentTemp="weather.main.temp"
       :cityName="weather.name"
@@ -44,18 +35,17 @@
       </template>
 
     </ForecastContainer>
-
-    <div class="weather-footer-container">
-    </div>
+    <div class="weather-footer-container"></div>
   </div>
 </template>
 
 <script>
+import { dragscroll } from 'vue-dragscroll';
+
 import tools from '@/mixins/tools';
 
 import storeHelper from '@/helpers/storeHelper';
 
-import NavHeader from '@/components/layout/NavHeader';
 import CurrentWeather from '@/components/weatherDetails/CurrentWeather';
 import ForecastContainer from '@/components/weatherDetails/ForecastContainer';
 import ForecastCurrentDayWeather from '@/components/weatherDetails/ForecastCurrentDayWeather';
@@ -65,8 +55,8 @@ import ForecastCurrentDayExtraInfo from '@/components/weatherDetails/ForecastCur
 
 export default {
   mixins: [tools],
+  directives: { dragscroll },
   components: {
-    NavHeader,
     CurrentWeather,
     ForecastContainer,
     ForecastCurrentDayWeather,
@@ -87,28 +77,6 @@ export default {
       }
       return 0;
     },
-    cityIdIndex() {
-      const cities = JSON.parse(localStorage.getItem('cities'));
-      return cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
-    },
-    citiesListLength() {
-      if (!localStorage.getItem('cities')) {
-        return 0;
-      }
-      return JSON.parse(localStorage.getItem('cities')).length;
-    },
-    showPrevious() {
-      if (this.cityIdIndex === 0) {
-        return false;
-      }
-      return true;
-    },
-    showNext() {
-      if (this.cityIdIndex === this.citiesListLength - 1) {
-        return false;
-      }
-      return true;
-    },
     weatherDetailClasses() {
       return {
         'weather-container': true,
@@ -120,25 +88,21 @@ export default {
   created() {
     this.$store.dispatch('weather/fetchWeatherFromCity', this.$route.params.cityId);
   },
-  methods: {
-    goPrevious() {
-      const cities = JSON.parse(localStorage.getItem('cities'));
-      const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
-      this.$store.dispatch('weather/changeCity', cities[index - 1].id);
-    },
-    goList() {
-      this.$router.push({ name: 'WeatherList' });
-    },
-    goNext() {
-      const cities = JSON.parse(localStorage.getItem('cities'));
-      const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
-      this.$store.dispatch('weather/changeCity', cities[index + 1].id);
-    },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
+  .container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+  .weather-footer-container {
+    // flex: 0 1 20px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 20px;
+  }
   .details-container {
     display: flex;
     flex-direction: row;
@@ -187,10 +151,4 @@ export default {
     margin-left: 10px;
   }
 
-  .weather-footer-container {
-    // flex: 0 1 20px;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: 20px;
-  }
 </style>

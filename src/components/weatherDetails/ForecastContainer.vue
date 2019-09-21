@@ -1,13 +1,15 @@
 <template>
-  <div class="weather-details-container">
-    <slot name="currentDayWeather" />
-    <hr>
-    <slot name="rainHumidityInfo" />
-    <hr>
-    <slot />
-    <hr>
-    <slot name="currentDayExtraInfo" />
-  </div>
+  <el-row type="flex">
+    <div class="weather-details-container">
+      <slot name="currentDayWeather" />
+      <hr>
+      <slot name="rainHumidityInfo" />
+      <hr>
+      <slot />
+      <hr>
+      <slot name="currentDayExtraInfo" />
+    </div>
+  </el-row>
 </template>
 
 <script>
@@ -27,7 +29,6 @@ export default {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;
-    overflow-y: auto
   }
 
 </style>
