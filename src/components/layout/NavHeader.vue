@@ -2,14 +2,14 @@
   <el-row type="flex" justify="space-between" class="force-top-position">
     <el-col :span="8">
       <el-button
-        v-if="showBack"
+        v-if="showPrevious"
         type="text"
-        class="nav-button back-button"
+        class="nav-button previous-button"
         size="medium"
-        @click="$emit('clickBack')"
+        @click="$emit('clickPrevious')"
       >
       <i class="el-icon-arrow-left"/>
-      Back
+      {{ previousLabel }}
       </el-button>
     </el-col>
     <el-col :span="8" class="align-center">
@@ -41,7 +41,11 @@
 <script>
 export default {
   props: {
-    showBack: {
+    previousLabel: {
+      type: String,
+      default: "Previous"
+    },
+    showPrevious: {
       type: Boolean,
       default: true,
     },
@@ -72,7 +76,7 @@ export default {
     }
   }
 
-  .back-button {
+  .previous-button {
     margin-left: 10px;
   }
 

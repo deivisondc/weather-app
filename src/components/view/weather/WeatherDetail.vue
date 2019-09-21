@@ -2,10 +2,10 @@
   <div :class="weatherDetailClasses">
 
     <NavHeader
-      @clickBack="goBack"
+      @clickPrevious="goPrevious"
       @clickList="goList"
       @clickNext="goNext"
-      :showBack="showBack"
+      :showPrevious="showPrevious"
       :showNext="showNext">
     </NavHeader>
 
@@ -97,7 +97,7 @@ export default {
       }
       return JSON.parse(localStorage.getItem('cities')).length;
     },
-    showBack() {
+    showPrevious() {
       if (this.cityIdIndex === 0) {
         return false;
       }
@@ -121,7 +121,7 @@ export default {
     this.$store.dispatch('weather/fetchWeatherFromCity', this.$route.params.cityId);
   },
   methods: {
-    goBack() {
+    goPrevious() {
       const cities = JSON.parse(localStorage.getItem('cities'));
       const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
       this.$store.dispatch('weather/changeCity', cities[index - 1].id);

@@ -1,7 +1,8 @@
 <template>
-  <div :class="backgroundClasses">
+  <div :class="backgroundClasses" style="overflow-y: overlay">
     <NavHeader
-      @clickBack="back"
+      previousLabel="Exit"
+      @clickPrevious="goPrevious"
       :showList="false"
       :showNext="false"
     />
@@ -11,6 +12,7 @@
     <el-row type="flex" class="cities-list">
       <button class="weather-buttom weather-buttom-add" @click="addWeather">
         <p>+</p>
+        <i/>
       </button>
       <button
         v-for="(value, key) in weatherList"
@@ -23,6 +25,7 @@
           :iconName="value.icon"
         />
         <p class="city-name">{{ value.name }}</p>
+        <i></i>
       </button>
     </el-row>
   </div>
@@ -56,13 +59,14 @@ export default {
     },
   },
   methods: {
-    back() {
+    goPrevious() {
       this.$router.push({ name: 'Dashboard' });
     },
     addWeather() {
-      this.$router.push({ name: 'WeatherNewCity' });
+      this.$store.dispatch('weather/openNewCityForm');
     },
     weatherDetail(cityId) {
+      // o que é melhor? PUSH - COMMIT? OU COMMIT-PUSH?
       this.$router.push({ name: 'WeatherDetail', params: { cityId } });
     },
     buttomClasses(nightTime) {
@@ -93,8 +97,35 @@ export default {
     border-radius: 5px;
     overflow: hidden;
 
+    &:hover > i {
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      left: 0;
+
+      background: linear-gradient(
+        to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.03) 1%,
+        rgba(255,255,255,0.6) 30%,
+        rgba(255,255,255,0.85) 50%,
+        rgba(255,255,255,0.85) 70%,
+        rgba(255,255,255,0.85) 71%,
+        rgba(255,255,255,0) 100%
+      );
+      width: 15%;
+      height: 100%;
+      transform: skew(15deg,0deg);
+
+      animation: move;
+      // animation-delay: 1s;
+      animation-duration: 0.4s;
+      // animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
     &-add {
-      border: 1px #000 dotted;
+      border: 0;
       background-color: rgba(238, 238, 238, 0.7);
 
       & > p {
@@ -105,7 +136,7 @@ export default {
     }
 
     &-added {
-      border: 1px #000 solid;
+      border: 0;
 
       &-day-bg {
         background: #FFF;
@@ -116,6 +147,7 @@ export default {
         background: #FFF;
         background-color: #4e585d;
       }
+
     }
 
     &-icon {
@@ -134,6 +166,16 @@ export default {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 2px 0px;
+  }
+
+  /*  */
+  @keyframes move {
+    0%  { left: 0; opacity: 0; }
+    25% {opacity: 1}
+    30% {opacity: 1}
+    48% {opacity: 1}
+    75% {opacity: 0.0; left: 100%}
+    100% { left: 100%}
   }
 
 </style>

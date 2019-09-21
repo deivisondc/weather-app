@@ -40,6 +40,7 @@ body {
     min-height: 500px;
     max-height: 500px;
     border-radius: 8px;
+    overflow: hidden;
 
     &-background-day {
       background: rgb(96,181,206);

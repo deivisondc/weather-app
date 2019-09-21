@@ -20,6 +20,8 @@ export default {
     },
     forecast: {},
     isLoading: true,
+    isSearchingCity: false,
+    errorMessage: '',
   },
 
   getters: {
@@ -27,6 +29,8 @@ export default {
     weather: state => state.weather,
     forecast: state => state.forecast,
     isLoading: state => state.isLoading,
+    isSearchingCity: state => state.isSearchingCity,
+    errorMessage: state => state.errorMessage,
   },
 
   actions: {
@@ -92,7 +96,8 @@ export default {
       commit('setIsLoading', false);
     },
 
-    async addNewCity(context, cityName) {
+    async addNewCity({ commit }, cityName) {
+      commit('setIsSearchingCity', true);
       const params = {
         q: cityName,
         APPID: process.env.VUE_APP_OPENWEATHER_API_KEY,
@@ -110,7 +115,17 @@ export default {
           cities.push({ id: res.data.id, name: res.data.name });
           localStorage.setItem('cities', JSON.stringify(cities));
           router.push({ name: 'WeatherDetail', params: { cityId: res.data.id } });
+          commit('setIsSearchingCity', false);
+        })
+        .catch((err) => {
+          commit('fetchErrorMessage', err.response.data.message);
+          commit('setIsSearchingCity', false);
         });
+    },
+
+    openNewCityForm({ commit }) {
+      commit('fetchErrorMessage', '');
+      router.push({ name: 'WeatherNewCity' });
     },
 
     changeCity(context, cityId) {
@@ -121,6 +136,12 @@ export default {
   mutations: {
     setIsLoading(state, isLoading) {
       state.isLoading = isLoading;
+    },
+    setIsSearchingCity(state, isSearchingCity) {
+      state.isSearchingCity = isSearchingCity;
+    },
+    fetchErrorMessage(state, errorMessage) {
+      state.errorMessage = errorMessage;
     },
     fetchWeatherData(state, payload) {
       state.weather = payload;
