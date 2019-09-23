@@ -115,6 +115,15 @@ export default {
       return JSON.parse(localStorage.getItem('cities')).length;
     },
   },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      if (!from.params.cityId && (to.params.cityId || to.fullPath.includes('new'))) {
+        this.animationName = 'zoom-in';
+        this.animationMode = 'out-in';
+      }
+      next();
+    });
+  },
 };
 </script>
 
@@ -133,6 +142,7 @@ export default {
     flex-basis: 20px;
   }
 
+  // SLIDE TRANSITIONS
   .slide-right-leave-to, .slide-left-enter {
     transform: translateX(25px);
     opacity: 0;
@@ -147,14 +157,36 @@ export default {
   .slide-left-enter-active, .slide-left-leave-active {
     transition: all .8s ease
   }
+  // END SLIDE TRANSITIONS
 
-  .zoom-out-enter-active, .zoom-out-leave-active {
-    animation: zoom 0.5s;
-    animation-fill-mode: both;
+  // ZOOM OUT TRANSITIONS
+  .zoom-out-enter {
+    opacity: 0;
   }
-
+  .zoom-out-enter-to {
+    opacity: 1;
+  }
+  .zoom-out-enter-active {
+    transition: opacity .5s ease
+  }
   .zoom-out-leave-active {
+    animation: zoom 0.5s;
     animation-direction: reverse;
+  }
+  // END ZOOM OUT TRANSITIONS
+
+  // ZOOM IN TRANSITIONS
+  .zoom-in-enter-active {
+    animation: zoom 0.5s;
+  }
+  .zoom-in-leave {
+    opacity: 0;
+  }
+  .zoom-in-leave-to {
+    opacity: 1;
+  }
+  .zoom-in-leave-active {
+    transition: opacity .5s ease
   }
 
   @keyframes zoom {
@@ -162,9 +194,9 @@ export default {
       opacity: 0;
       transform: scale3d(0.3, 0.3, 0.3);
     }
-
     100% {
       opacity: 1;
     }
   }
+  // END ZOOM IN TRANSITIONS
 </style>
