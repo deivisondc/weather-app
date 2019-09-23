@@ -113,6 +113,38 @@ export default {
 
 <style lang="scss" scoped>
 
+  #outerRepeat {
+    animation: breathing 5s ease-in-out infinite alternate;
+  }
+
+  #middleRepeat {
+    animation: breathing 5s ease-in-out infinite alternate 2.5s;
+  }
+
+  @keyframes breathing {
+    0% {
+      transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1);
+    }
+    95% {
+      transform: matrix3d(
+        0.8, 0, 0, 0,
+        0, 0.8, 0, 0,
+        0, 0, 1, 0,
+        5.5, 5.5, 0, 1);
+    }
+    100% {
+      transform: matrix3d(
+        0.8, 0, 0, 0,
+        0, 0.8, 0, 0,
+        0, 0, 1, 0,
+        5.5, 5.5, 0, 1);
+    }
+  }
+
   #droplet1 {
     animation: droplet-animation 0.5s infinite linear;
   }

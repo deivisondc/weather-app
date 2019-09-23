@@ -20,5 +20,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  #outerRepeat {
+    animation: breathing 5s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
 
+  #middleRepeat {
+    animation: breathing 5s ease-in-out infinite alternate 2.5s;
+    transform-origin: center;
+  }
+
+  @keyframes breathing {
+    0% {
+      transform: scale(1);
+    }
+    95% {
+      transform: scale(0.8)
+    }
+    100% {
+      transform: scale(0.8)
+    }
+  }
 </style>

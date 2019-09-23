@@ -78,5 +78,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#star1 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear;
+  }
 
+  #star2 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.25s;
+  }
+  #star3 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.5s;
+  }
+  @keyframes star-animation {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 </style>

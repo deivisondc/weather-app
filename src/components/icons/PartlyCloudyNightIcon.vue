@@ -31,6 +31,22 @@
         C65,44.2,62.8,42.1,60.1,42.1z"/>
     </g>
 
+    <g id="stars">
+      <path id="star1" fill="#FFFFFF" d="
+        M 45.5, 18.5
+        c -1.6, 0.2-1.8, 0.4-2, 2
+        c -0.2-1.6-0.4-1.8-2-2
+        c 1.6-0.2, 1.8-0.4, 2-2
+        C 43.6, 18.1, 43.8, 18.3, 45.5, 18.5z"/>
+
+      <path id="star2" fill="#FFFFFF" d="
+        M 56.5, 25.5
+        c -1.6, 0.2-1.8, 0.4-2, 2
+        c -0.2-1.6-0.4-1.8-2-2
+        c 1.6-0.2, 1.8-0.4, 2-2
+        C 54.6, 25.1, 54.8, 25.3, 56.5, 25.5z"/>
+    </g>
+
   </svg>
 <!-- eslint-enable -->
 </template>
@@ -42,5 +58,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  #star1 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear;
+  }
 
+  #star2 {
+    opacity: 0;
+    animation: star-animation 5s infinite linear 0.25s;
+  }
+
+  @keyframes star-animation {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 </style>

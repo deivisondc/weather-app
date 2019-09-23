@@ -5,24 +5,18 @@
     <path id="lightning" fill="#FF9B00" d="M34.9,39.2l-5.1,6.7L29.4,45h4.1h1.2L34,45.9l-4.7,5.8c-0.1,0.1-0.3,0.1-0.4,0
       s-0.1-0.3-0.1-0.4l4.2-6.2l0.5,0.9h-4.1h-1.2l0.7-0.9l5.1-6.7c0.2-0.3,0.6-0.3,0.8-0.1C35,38.6,35.1,39,34.9,39.2z"/>
     <g id="rain">
-      <path fill="#00A2CF" d="M37.5,39.3c-0.3,0.6-1,0.9-1.4,0.7s-0.4-0.9-0.1-1.5c0.4-0.6,2-1.8,2-1.8S37.9,38.7,37.5,39.3z"/>
-      <path fill="#00A2CF" d="M27.3,39.5c-0.3,0.5-0.7,0.7-1,0.5s-0.3-0.7-0.1-1.2c0.3-0.5,1.6-1.4,1.6-1.4S27.6,39,27.3,39.5z"/>
-      <path fill="#00A2CF" d="M16.9,34.2c-0.3,0.6-0.9,0.9-1.3,0.7c-0.4-0.2-0.4-0.9-0.1-1.5c0.3-0.6,1.9-1.8,1.9-1.8
-        S17.3,33.6,16.9,34.2z"/>
-      <path fill="#00A2CF" d="M21.3,39.2c-0.3,0.5-0.8,0.7-1.1,0.5c-0.3-0.2-0.3-0.7-0.1-1.2c0.3-0.5,1.6-1.4,1.6-1.4
-        S21.6,38.7,21.3,39.2z"/>
-      <path fill="#00A2CF" d="M24.8,39.3c-0.3,0.6-1,0.9-1.4,0.7s-0.4-0.9-0.1-1.5c0.4-0.6,2-1.8,2-1.8S25.1,38.7,24.8,39.3z"/>
-      <path fill="#00A2CF" d="M28.7,39.6c-0.2,0.4-0.6,0.6-0.9,0.4c-0.3-0.1-0.3-0.6-0.1-1c0.2-0.4,1.3-1.2,1.3-1.2S28.9,39.2,28.7,39.6z
-        "/>
-      <path fill="#00A2CF" d="M42.7,39.6c-0.2,0.4-0.6,0.6-0.9,0.4c-0.3-0.1-0.3-0.6-0.1-1s1.3-1.2,1.3-1.2S42.9,39.2,42.7,39.6z"/>
-      <path fill="#00A2CF" d="M37,39.6c-0.2,0.4-0.6,0.6-0.9,0.4c-0.3-0.1-0.3-0.6-0.1-1s1.3-1.2,1.3-1.2S37.2,39.2,37,39.6z"/>
-      <path fill="#00A2CF" d="M53.7,33.3c-0.2,0.3-0.5,0.5-0.7,0.4s-0.2-0.5,0-0.8s1.1-1,1.1-1S53.9,33,53.7,33.3z"/>
-      <path fill="#00A2CF" d="M50.3,37.5c-0.3,0.5-0.8,0.7-1.1,0.6c-0.3-0.2-0.4-0.7-0.1-1.2c0.3-0.5,1.7-1.5,1.7-1.5S50.6,37,50.3,37.5z
-        "/>
-      <path fill="#00A2CF" d="M55.8,33.3c-0.2,0.4-0.6,0.6-0.8,0.4c-0.2-0.1-0.3-0.6-0.1-0.9c0.2-0.4,1.3-1.1,1.3-1.1S56,32.9,55.8,33.3z
-        "/>
-      <path fill="#00A2CF" d="M16.8,34.5c-0.2,0.4-0.6,0.6-0.8,0.4c-0.2-0.1-0.3-0.6-0.1-0.9c0.2-0.4,1.3-1.1,1.3-1.1S17,34.1,16.8,34.5z
-        "/>
+      <path id="droplet1" fill="#00A2CF" d="M37.5,39.3c-0.3,0.6-1,0.9-1.4,0.7s-0.4-0.9-0.1-1.5c0.4-0.6,2-1.8,2-1.8S37.9,38.7,37.5,39.3z"/>
+      <path id="droplet2" fill="#00A2CF" d="M27.3,39.5c-0.3,0.5-0.7,0.7-1,0.5s-0.3-0.7-0.1-1.2c0.3-0.5,1.6-1.4,1.6-1.4S27.6,39,27.3,39.5z"/>
+      <path id="droplet3" fill="#00A2CF" d="M16.9,34.2c-0.3,0.6-0.9,0.9-1.3,0.7c-0.4-0.2-0.4-0.9-0.1-1.5c0.3-0.6,1.9-1.8,1.9-1.8        S17.3,33.6,16.9,34.2z"/>
+      <path id="droplet4" fill="#00A2CF" d="M21.3,39.2c-0.3,0.5-0.8,0.7-1.1,0.5c-0.3-0.2-0.3-0.7-0.1-1.2c0.3-0.5,1.6-1.4,1.6-1.4        S21.6,38.7,21.3,39.2z"/>
+      <path id="droplet5" fill="#00A2CF" d="M24.8,39.3c-0.3,0.6-1,0.9-1.4,0.7s-0.4-0.9-0.1-1.5c0.4-0.6,2-1.8,2-1.8S25.1,38.7,24.8,39.3z"/>
+      <path id="droplet6" fill="#00A2CF" d="M28.7,39.6c-0.2,0.4-0.6,0.6-0.9,0.4c-0.3-0.1-0.3-0.6-0.1-1c0.2-0.4,1.3-1.2,1.3-1.2S28.9,39.2,28.7,39.6z        "/>
+      <path id="droplet7" fill="#00A2CF" d="M42.7,39.6c-0.2,0.4-0.6,0.6-0.9,0.4c-0.3-0.1-0.3-0.6-0.1-1s1.3-1.2,1.3-1.2S42.9,39.2,42.7,39.6z"/>
+      <path id="droplet8" fill="#00A2CF" d="M37,39.6c-0.2,0.4-0.6,0.6-0.9,0.4c-0.3-0.1-0.3-0.6-0.1-1s1.3-1.2,1.3-1.2S37.2,39.2,37,39.6z"/>
+      <path id="droplet9" fill="#00A2CF" d="M53.7,33.3c-0.2,0.3-0.5,0.5-0.7,0.4s-0.2-0.5,0-0.8s1.1-1,1.1-1S53.9,33,53.7,33.3z"/>
+      <path id="droplet10" fill="#00A2CF" d="M50.3,37.5c-0.3,0.5-0.8,0.7-1.1,0.6c-0.3-0.2-0.4-0.7-0.1-1.2c0.3-0.5,1.7-1.5,1.7-1.5S50.6,37,50.3,37.5z        "/>
+      <path id="droplet11" fill="#00A2CF" d="M55.8,33.3c-0.2,0.4-0.6,0.6-0.8,0.4c-0.2-0.1-0.3-0.6-0.1-0.9c0.2-0.4,1.3-1.1,1.3-1.1S56,32.9,55.8,33.3z        "/>
+      <path id="droplet12" fill="#00A2CF" d="M16.8,34.5c-0.2,0.4-0.6,0.6-0.8,0.4c-0.2-0.1-0.3-0.6-0.1-0.9c0.2-0.4,1.3-1.1,1.3-1.1S17,34.1,16.8,34.5z        "/>
     </g>
     <g id="cloud2">
       <path fill="#BCBEC0" d="M64.2,30.8c0,1.7-2,3.1-4.4,3.1H33.4c-2.4,0-4.4-1.4-4.4-3.1l0,0c0-1.7,2-3.1,4.4-3.1h26.4
@@ -90,4 +84,117 @@ export default {
 
 <style lang="scss" scoped>
 
+  #lightning {
+    animation: thunder-animation 4s infinite linear;
+  }
+
+  @keyframes thunder-animation {
+    20% {
+      transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+      )
+    }
+
+    22% {
+      transform: matrix3d(
+        0.7, 0, 0, 0,
+        0, 0.7, 0, 0,
+        0, 0, 1, 0,
+        8, 10, 0, 1,
+      )
+    }
+
+    23% {
+      transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+      )
+    }
+
+    25% {
+      transform: matrix3d(
+        0.7, 0, 0, 0,
+        0, 0.7, 0, 0,
+        0, 0, 1, 0,
+        8, 10, 0, 1,
+      )
+    }
+
+    26% {
+      transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+      )
+    }
+  }
+
+  #droplet1 {
+    animation: droplet-animation 0.5s infinite linear;
+  }
+
+  #droplet2 {
+    animation: droplet-animation 0.55s infinite linear 0.2s;
+  }
+
+  #droplet3 {
+    animation: droplet-animation 0.6s infinite linear 0.3s;
+  }
+
+  #droplet4 {
+    animation: droplet-animation 0.65s infinite linear 0.4s;
+  }
+
+  #droplet5 {
+    animation: droplet-animation 0.65s infinite linear 0.4s;
+  }
+
+  #droplet6 {
+    animation: droplet-animation 0.65s infinite linear 0.4s;
+  }
+
+  #droplet7 {
+    animation: droplet-animation 0.5s infinite linear 0.3;
+  }
+
+  #droplet8 {
+    animation: droplet-animation 0.55s infinite linear 0.2s;
+  }
+
+  #droplet9 {
+    animation: droplet-animation 0.6s infinite linear 0.3s;
+  }
+
+  #droplet10 {
+    animation: droplet-animation 0.65s infinite linear 0.4s;
+  }
+
+  #droplet11 {
+    animation: droplet-animation 0.65s infinite linear 0.4s;
+  }
+
+  #droplet12 {
+    animation: droplet-animation 0.65s infinite linear 0.4s;
+  }
+
+  @keyframes droplet-animation {
+    0% {
+      opacity: 1;
+      transform: translate(4px, 0px)
+    }
+    50% {
+      opacity: 1;
+      transform: translate(0px, 7.5px)
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-4px, 15px)
+    }
+  }
 </style>

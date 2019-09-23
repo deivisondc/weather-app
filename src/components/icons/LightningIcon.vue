@@ -63,5 +63,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  #lightning {
+    animation: thunder-animation 4s infinite linear;
+  }
 
+  @keyframes thunder-animation {
+    20% {
+      transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+      )
+    }
+
+    22% {
+      transform: matrix3d(
+        0.7, 0, 0, 0,
+        0, 0.7, 0, 0,
+        0, 0, 1, 0,
+        8, 10, 0, 1,
+      )
+    }
+
+    23% {
+      transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+      )
+    }
+
+    25% {
+      transform: matrix3d(
+        0.7, 0, 0, 0,
+        0, 0.7, 0, 0,
+        0, 0, 1, 0,
+        8, 10, 0, 1,
+      )
+    }
+
+    26% {
+      transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+      )
+    }
+  }
 </style>
