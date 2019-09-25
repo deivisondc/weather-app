@@ -35,7 +35,7 @@ export default {
 
   actions: {
     async fetchWeatherFromCity({ commit }, cityId) {
-      commit('setIsLoading', true);
+      commit('SET_IS_LOADING', true);
 
       const params = {
         id: cityId,
@@ -91,13 +91,13 @@ export default {
       }
 
 
-      commit('fetchWeatherData', weather);
-      commit('fetchForecastData', forecast);
-      commit('setIsLoading', false);
+      commit('FETCH_WEATHER_DATA', weather);
+      commit('FETCH_FORECAST_DATA', forecast);
+      commit('SET_IS_LOADING', false);
     },
 
     async addNewCity({ commit }, cityName) {
-      commit('setIsSearchingCity', true);
+      commit('SET_IS_SEARCHING_CITY', true);
       const params = {
         q: cityName,
         APPID: process.env.VUE_APP_OPENWEATHER_API_KEY,
@@ -115,16 +115,16 @@ export default {
           cities.push({ id: res.data.id, name: res.data.name });
           localStorage.setItem('cities', JSON.stringify(cities));
           router.push({ name: 'WeatherDetail', params: { cityId: res.data.id } });
-          commit('setIsSearchingCity', false);
+          commit('SET_IS_SEARCHING_CITY', false);
         })
         .catch((err) => {
-          commit('fetchErrorMessage', err.response.data.message);
-          commit('setIsSearchingCity', false);
+          commit('FETCH_ERROR_MESSAGE', err.response.data.message);
+          commit('SET_IS_SEARCHING_CITY', false);
         });
     },
 
     openNewCityForm({ commit }) {
-      commit('fetchErrorMessage', '');
+      commit('FETCH_ERROR_MESSAGE', '');
       router.push({ name: 'WeatherNewCity' });
     },
 
@@ -134,19 +134,19 @@ export default {
   },
 
   mutations: {
-    setIsLoading(state, isLoading) {
+    SET_IS_LOADING(state, isLoading) {
       state.isLoading = isLoading;
     },
-    setIsSearchingCity(state, isSearchingCity) {
+    SET_IS_SEARCHING_CITY(state, isSearchingCity) {
       state.isSearchingCity = isSearchingCity;
     },
-    fetchErrorMessage(state, errorMessage) {
+    FETCH_ERROR_MESSAGE(state, errorMessage) {
       state.errorMessage = errorMessage;
     },
-    fetchWeatherData(state, payload) {
+    FETCH_WEATHER_DATA(state, payload) {
       state.weather = payload;
     },
-    fetchForecastData(state, payload) {
+    FETCH_FORECAST_DATA(state, payload) {
       state.forecast = payload;
     },
   },
