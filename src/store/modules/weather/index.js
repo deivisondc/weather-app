@@ -2,6 +2,7 @@ import Vue from 'vue';
 import router from '@/router';
 import axios from '@/services/axios';
 import tools from '@/mixins/tools';
+import localStorageHelper from '@/helpers/localStorageHelper';
 
 export default {
   namespaced: true,
@@ -78,8 +79,8 @@ export default {
       });
 
       let cities = [];
-      if (localStorage.getItem('cities')) {
-        cities = JSON.parse(localStorage.getItem('cities'), true);
+      if (localStorageHelper.getItem('cities')) {
+        cities = JSON.parse(localStorageHelper.getItem('cities'), true);
 
         const index = cities.map(m => m.id).indexOf(parseInt(cityId, 10));
         if (index > -1) {
@@ -87,7 +88,7 @@ export default {
           cities[index].nightTime = Vue.moment().hours() <= 6 || Vue.moment().hours() >= 18;
         }
 
-        localStorage.setItem('cities', JSON.stringify(cities));
+        localStorageHelper.setItem('cities', JSON.stringify(cities));
       }
 
 
@@ -108,12 +109,12 @@ export default {
       await axios.get('weather', { params })
         .then((res) => {
           let cities = [];
-          if (localStorage.getItem('cities')) {
-            cities = JSON.parse(localStorage.getItem('cities'), true);
+          if (localStorageHelper.getItem('cities')) {
+            cities = JSON.parse(localStorageHelper.getItem('cities'), true);
           }
 
           cities.push({ id: res.data.id, name: res.data.name });
-          localStorage.setItem('cities', JSON.stringify(cities));
+          localStorageHelper.setItem('cities', JSON.stringify(cities));
           router.push({ name: 'WeatherDetail', params: { cityId: res.data.id } });
           commit('SET_IS_SEARCHING_CITY', false);
         })

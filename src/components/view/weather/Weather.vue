@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import localStorageHelper from '@/helpers/localStorageHelper';
+
 import BaseLayout from '@/components/layout/BaseLayout';
 import NavHeader from '@/components/layout/NavHeader';
 
@@ -43,7 +45,7 @@ export default {
       };
     },
     cityIdIndex() {
-      const cities = JSON.parse(localStorage.getItem('cities'));
+      const cities = JSON.parse(localStorageHelper.getItem('cities'));
       return cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
     },
     previousLabel() {
@@ -92,7 +94,7 @@ export default {
 
       this.animationName = 'slide-left';
       this.animationMode = 'out-in';
-      const cities = JSON.parse(localStorage.getItem('cities'));
+      const cities = JSON.parse(localStorageHelper.getItem('cities'));
       const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
       return this.$store.dispatch('weather/changeCity', cities[index - 1].id);
     },
@@ -104,15 +106,15 @@ export default {
     goNext() {
       this.animationName = 'slide-right';
       this.animationMode = 'out-in';
-      const cities = JSON.parse(localStorage.getItem('cities'));
+      const cities = JSON.parse(localStorageHelper.getItem('cities'));
       const index = cities.map(m => m.id).indexOf(parseInt(this.$route.params.cityId, 10));
       this.$store.dispatch('weather/changeCity', cities[index + 1].id);
     },
     citiesListLength() {
-      if (!localStorage.getItem('cities')) {
+      if (!localStorageHelper.getItem('cities')) {
         return 0;
       }
-      return JSON.parse(localStorage.getItem('cities')).length;
+      return JSON.parse(localStorageHelper.getItem('cities')).length;
     },
   },
   created() {

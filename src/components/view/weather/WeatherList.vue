@@ -28,6 +28,8 @@
 <script>
 import { dragscroll } from 'vue-dragscroll';
 
+import localStorageHelper from '@/helpers/localStorageHelper';
+
 import tools from '@/mixins/tools';
 
 import IconWrapper from '@/components/icons/IconWrapper';
@@ -47,8 +49,8 @@ export default {
       };
     },
     weatherList() {
-      if (localStorage.getItem('cities')) {
-        return JSON.parse(localStorage.getItem('cities'));
+      if (localStorageHelper.getItem('cities')) {
+        return JSON.parse(localStorageHelper.getItem('cities'));
       }
       return [];
     },
